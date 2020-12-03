@@ -78,7 +78,6 @@ public class loginVM {
 		try {
 			Encryptar encrip=new Encryptar();
 			passEncrip=encrip.encrypt(pass);
-			System.out.println(user+" , "+passEncrip);
 			Object []resultadoLogin=auth.login(user, passEncrip);
 			
 			if((boolean)resultadoLogin[0]){

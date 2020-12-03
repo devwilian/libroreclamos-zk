@@ -23,14 +23,12 @@ public class CConexion
     	try {
     		//introduce las condiciones de la conexion.
     		 PoolProperties p = new PoolProperties();
-//             p.setUrl("jdbc:postgresql://209.151.156.12:5432/DBhablacasero");
-             p.setUrl("jdbc:postgresql://94.237.61.223:5432/DBDemo");
+             p.setUrl("jdbc:postgresql://localhost:5432/DBReclamos");
+//             p.setUrl("jdbc:postgresql://94.237.61.223:5432/DBDemo");
              p.setDriverClassName("org.postgresql.Driver");
              p.setUsername("postgres");
-//             p.setPassword("elremolino");
-//             p.setPassword("laNUBE2020@@");
-             p.setPassword("lrv2020@@");
-//             p.setPassword("12345");
+             p.setPassword("12345");
+//             p.setPassword("lrv2020@@");
              p.setJmxEnabled(true);
              p.setTestWhileIdle(false);
              p.setTestOnBorrow(true);

@@ -52,7 +52,7 @@ public class panelAdminVM{
 		    int perfil=(int)ses.getAttribute("perfil");
 		    /******************************************/
 		    iniciarPanelAdministrador(user,pas,perfil);
-		    System.out.println("Visible primera vez "+visibleprimeravez);
+//		    System.out.println("Visible primera vez "+visibleprimeravez);
 		}
 		catch(Exception e)
 		{
@@ -61,7 +61,7 @@ public class panelAdminVM{
 	}
 	public void irALogin()
 	{
-		System.out.println("Entro para ir a login.zul");
+//		System.out.println("Entro para ir a login.zul");
 		Executions.getCurrent().sendRedirect("/login.zul");
 	}
 	@Command
@@ -90,7 +90,7 @@ public class panelAdminVM{
 		visibleprimeravez=r.esPriemeraVez(r.recuperarPrimeraVez());
 		
 		int aux=usuarioDao.codigoAcceso(usuarioDao.recuperarCodigoAccesosUsuario(codPerfil));
-		System.out.println("Codigo acceso "+aux);
+//		System.out.println("Codigo acceso "+aux);
 		
 		usuarioDao.asignarAccesosUsuario(usuarioDao.recuperarAccesosUsuario(aux));
 		setoAcceso(usuarioDao.getoAcceso());
