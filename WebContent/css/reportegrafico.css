@@ -1,0 +1,76 @@
+.div_leyenda{
+	width:30%;
+	padding: 10px;
+	border: 1px solid #EEEEEE;
+	border-radius: 5px;	
+}
+.estilo1{/* estilo cusco*/
+	width: 25px;
+	height: 25px;
+	background: #2F7ED8;
+}
+.estilo2{/* estilo machupicchu*/
+	width: 25px;
+	height: 25px;
+	background: #0D233A;
+}
+.estilo3{
+	width: 25px;
+	height: 25px;
+	background: #8BBC21;
+}
+.estilo4{
+	width: 25px;
+	height: 25px;
+	background: #910000;
+}
+.estilo5{
+	width: 25px;
+	height: 25px;
+	background: #1AADCE;
+}
+.estilo6{
+	width: 25px;
+	height: 25px;
+	background: #492970;
+}
+.estilo7{
+	width: 25px;
+	height: 25px;
+	background: #F28F43;
+}
+.estilo8{
+	width: 25px;
+	height: 25px;
+	background: #77A1E5;
+}
+.estilo9{
+	width: 25px;
+	height: 25px;
+	background: #C42525;
+}
+.estilo10{
+	width: 25px;
+	height: 25px;
+	background: #A6C96A;
+}
+.div_grafico{
+	width: 70%;
+}
+.flex_grafico{
+	display: flex;
+	align-items:center;
+	justify-content:center;
+}
+.grafico_{
+	
+}
+@media (max-width:900px){
+	.flex_grafico{
+		display: block;
+	}
+	.div_leyenda{
+		width: 90%;
+	}
+}
+

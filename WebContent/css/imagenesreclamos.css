@@ -1,0 +1,204 @@
+.z-modal-mask{
+	background: rgba(0,0,0,1);
+}
+.win_imagenesHotel{
+	width: 100%;
+}
+@media (max-width:991px){
+	.win_imagenesHotel{
+		width: 100%;
+	}
+}
+.win_imagenesHotel.z-window{
+	background:white;
+	text-align: justify;	
+}
+.win_imagenesHotel.z-window .z-window-content{
+	border:1px solid rgba(0,0,0,0.2);
+	background: white;
+	text-align: justify;
+	border-radius:4px;
+	box-sizing:border-box;
+	border: none;
+}
+.win_imagenesHotel .z-window-header{
+	color: white;
+}
+.win_imagenesHotel .z-window-icon{
+	border:1px solid white;
+	background:#EEEEEE;
+	border-radius:0;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	justify-content:center;
+	-webkit-justify-content:center;
+	-moz-justify-content:center;
+	-ms-justify-content:center;
+	-o-justify-content:center;
+	align-items:center;
+	-webkit-align-items:center;
+	-moz-align-items:center;
+	-ms-align-items:center;
+	-o-align-items:center;
+}
+.win_imagenesHotel .z-window-icon .z-icon-times{
+	color: white;
+}
+/**PANEL DEMUESTRA DE LAS IMAGENES**/
+/* .tabs_titulos .z-tabs-content{ */
+/* 	background: white; */
+/* 	margin: 0; */
+/* } */
+/* .tab_titulo.z-tab{ */
+/* 	background: rgba(0,0,0,0.2); */
+/* 	border-radius:5px 5px 0 0; */
+/* 	border: 2px solid #1A5276; */
+/* } */
+/* .tab_titulo.z-tab .z-tab-content .z-tab-text{ */
+/* 	color:#1A5276; */
+/* 	font-size: 15px; */
+/* 	font-weight: bold; */
+/* } */
+/* .tab_titulo.z-tab .z-tab-content{ */
+/* 	text-decoration: none; */
+/* } */
+/* .tab_titulo.z-tab.z-tab-selected{ */
+/* 	background: #1A5276; */
+/* 	border-radius:5px 5px 0 0; */
+/* 	border: 2px solid #1A5276; */
+/* } */
+/* .tab_titulo.z-tab.z-tab-selected .z-tab-content .z-tab-text{ */
+/* 	color:white; */
+/* 	font-size: 15px; */
+/* 	font-weight: bold; */
+/* } */
+/* .tabpanels_contenido.z-tabpanels{ */
+/* 	border: 2px solid #1A5276; */
+/* 	background: white; */
+/* } */
+/**IMAGENES DENTRO DEL GRID**/
+.z-grid,
+.z-rows,
+.row_grid.z-row,
+.row_grid.z-row:hover,
+.z-grid:hover .row_grid.z-row,
+.z-row-inner{
+	background: white;
+	border: none;
+}
+.div_content_columnas{
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	width: 100%;	
+}
+@media (max-width:500px){
+	.div_content_columnas{
+		flex-direction:column;
+		-webkit-flex-direction:column;
+		-moz-flex-direction:column;
+		-ms-flex-direction:column;
+		-o-flex-direction:column;
+	}	
+}
+@media (max-width:900px){
+	.div_content_col2{
+		display: block;
+	}
+}
+.div_content_col2{
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	width: 100%;
+}
+.row_grid.z-row{
+	width: 100%;
+}
+
+.div_content_imageHotel_selected{
+	margin: 4px;
+	width: 45%;
+	padding:3px;
+	background: #1A5276;
+	position: relative;
+	cursor: pointer;
+}
+.div_eliminar_imagen_hotel{
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	justify-content:flex-end;
+	-webkit-justify-content:flex-end;
+	-moz-justify-content:flex-end;
+	-ms-justify-content:flex-end;
+	-o-justify-content:flex-end;
+	align-items:center;
+	-webkit-align-items:center;
+	-moz-align-items:center;
+	-ms-align-items:center;
+	-o-align-items:center;
+	z-index: 3;
+	position: absolute;
+	bottom: -16px;
+	right: -6px;
+}
+.btn_eliminar_imagen_hotel{
+	border: none;
+	border-radius:2px;
+	padding:5px 10px;
+	background: #053351;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+.btn_eliminar_imagen_hotel:hover{
+	background: #DF1405;
+	font-size: 17px;
+}
+
+.div_content_imageHotel_selected:AFTER{
+	content:'✔';
+	position:absolute;
+	background: #1A5276;
+	color: white;
+	font-weight: bold;
+	padding: 0 5px 0 5px;
+	top:0;
+	right: 0;
+}
+.div_content_imageHotel{
+	margin: 4px;
+	width: 45%;
+	padding:3px;
+	background: gray;
+	cursor: pointer;
+	position: relative;
+}
+.div_content_update_cancel{
+	float: right;
+}
+.guardar{
+	background: #1A5276;
+	border-radius: 5px;
+	padding:5px;
+	color: white;
+}
+.cancelar{
+	background: gray;
+	border-radius: 5px;
+	padding:5px;
+	color: white;
+}

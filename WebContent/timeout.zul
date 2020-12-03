@@ -1,0 +1,32 @@
+    language="xul/html" zscriptLanguage="Java"?>
+<?meta content="text/html; charset=UTF-8"   pageEncoding="UTF-8"?>
+
+<!-- activate Bootstrap responsive layout -->
+<?meta name="viewport" content="width=device-width, initial-scale=1.0"?>
+
+<!-- auto redirect to root after XX seconds-->
+<?meta http-equiv="refresh" content="5; url=./"?>
+
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+    <zk xmlns="http://www.zkoss.org/2005/zul" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:w="http://www.zkoss.org/2005/zk/client"
+      xmlns:n="http://www.zkoss.org/2005/zk/native" xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+
+      <style>
+        .body { padding: 0 0; /* 0 padding on top and bottom and 0 padding on right and left */
+      </style>
+	  <style src="css/timeout.css"/>
+      <!-- outer window with vertical scrollbar -->
+      <window width="100%" height="100%" border="none" sclass="outerwin" contentStyle="overflow:auto;">
+
+        <n:div class="jumbotron text-center">
+          <n:h2 style="color:blue;">Session Timeout</n:h2>
+
+          ${labels.ox_Message_Info_Timeout}
+
+          <n:br />
+          <n:br />
+          <a class="btn btn-sm btn-default" label="${labels.ox_backToApplication}" href="/"></a>
+        </n:div>
+      </window>
+    </zk>

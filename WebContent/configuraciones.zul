@@ -1,0 +1,33 @@
+<?page title="Configuraciones" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/configuraciones.css"></style>
+<div viewModel="@id('vmConfig') @init('com.libro.viewModel.configuracionesVM')">
+	<tabbox>
+		<tabs>
+			<tab id="prefijo" label="Prefijo Reclamo" onClick="@command('configurar',id=self.id)" selected="false"></tab>
+			<tab id="correo" label="Correo" onClick="@command('configurar',id=self.id)" selected="false"></tab>
+			<tab id="sedearea" label="Sede y Area" onClick="@command('configurar',id=self.id)" selected="false"></tab>
+			<tab id="motivo" label="Motivos de queja" onClick="@command('configurar',id=self.id)" selected="false"></tab>
+			<tab id="empresa" label="Acerca de la Empresa" onClick="@command('configurar',id=self.id)" selected="false"></tab>
+		</tabs>
+	</tabbox>
+	<separator bar="true"></separator>
+	<div>
+		<div visible="@bind(vmConfig.configprefijo)">
+			<include src="configprefijo.zul"></include>
+		</div>
+		<div visible="@bind(vmConfig.configcorreo)">
+			<include src="configcorreo.zul"></include>
+		</div>
+		<div visible="@bind(vmConfig.configareasede)">
+			<include src="configareasede.zul"></include>
+		</div>
+		<div visible="@bind(vmConfig.configempresa)">
+			<include src="configempresa.zul"></include>
+		</div>
+		<div visible="@bind(vmConfig.configmotivo)">
+			<include src="configmotivo.zul"></include>
+		</div>
+	</div>
+</div>
+</zk>

@@ -1,0 +1,77 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page viewport="width=device-width, initial-scale=1.0,  user-scalable=no"?>
+<window id="win_imgHotel"
+		border="normal"
+		position="center"
+		sclass="win_imagenesHotel"
+		viewModel="@id('vm') @init('com.libro.viewModel.ImagenesPaqueteVM')">
+		<grid model="@bind(vm.listaImagenesPaquetes)">
+				<columns>
+					<column label=""/>
+				</columns>
+				<template name="model">
+					<row sclass="row_grid">
+						<div zclass="div_content_columnas">
+							<div zclass="div_content_col2">
+								<div visible="@bind(each.galeria1.visible)"
+									zclass="@load(each.galeria1.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria1)">
+									<image src="@bind(each.galeria1.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria2.visible)" 
+									zclass="@load(each.galeria2.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria2)">
+									<image src="@bind(each.galeria2.cRutaImagen)"  width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria3.visible)" 
+									zclass="@load(each.galeria3.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria3)">
+									<image src="@bind(each.galeria3.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria4.visible)" 
+									zclass="@load(each.galeria4.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria4)">
+									<image src="@bind(each.galeria4.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria5.visible)" 
+									zclass="@load(each.galeria5.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria5)">
+									<image src="@bind(each.galeria5.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria6.visible)" 
+									zclass="@load(each.galeria6.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria6)">
+									<image src="@bind(each.galeria6.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria7.visible)" 
+									zclass="@load(each.galeria7.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria7)">
+									<image src="@bind(each.galeria7.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria8.visible)" 
+									zclass="@load(each.galeria8.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria8)">
+									<image src="@bind(each.galeria8.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria8.visible)" 
+									zclass="@load(each.galeria8.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria9)">
+									<image src="@bind(each.galeria9.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+								<div visible="@bind(each.galeria10.visible)" 
+									zclass="@load(each.galeria10.style_Select)"
+									onClick="@command('descargarDoc',galeria4=each,galeria=each.galeria10)">
+									<image src="@bind(each.galeria10.cRutaImagen)" width="100%" height="100px"/>
+								</div>
+							</div>
+						</div>
+					</row>
+				</template>
+			</grid>
+			<div width="100%" visible="@bind(vm.update)">
+				<div zclass="div_content_update_cancel">
+					<button label="CANCELAR" zclass="cancelar" onClick="win_imgHotel.onClose()"/>
+					<button label="GUARDAR CAMBIOS" zclass="guardar" onClick="@command('guardarCambios',componente=self)"/>
+				</div>
+			</div>
+</window>

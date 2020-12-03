@@ -1,0 +1,25 @@
+
+
+[class^="z-"], [class*=" z-"], [class^="z-"]::after, [class*=" z-"]::after, [class^="z-"]::before, [class*=" z-"]::before, .z-borderbox {
+	box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -o-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+}
+.estilo_tabbox .z-tabs .z-tabs-content .z-tab.z-tab-selected {
+    background: #2f2f2f;
+    height: 30px;
+    border-radius: 15px 15px 0px 0px;
+}
+.estilo_tabbox .z-tabs .z-tabs-content .z-tab:hover {
+    background: #2f2f2f;
+    height: 30px;
+    border-radius: 15px 15px 0px 0px;
+}
+.estilo_tabbox .z-tabs .z-tabs-content, .estilo_tabbox .z-tabs .z-tabs-content .z-tab {
+    background: transparent;
+    border: none;
+    height: 30px;
+    width: auto;
+}

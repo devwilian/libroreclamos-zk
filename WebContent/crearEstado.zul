@@ -1,0 +1,54 @@
+<?page title="Crear Estado" contentType="text/html;charset=UTF-8"?>
+<?link  href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet"?>
+<zk>
+<style src="css/crearestado.css"/>
+<style src="https://fonts.googleapis.com/css?family=Aldrich"></style>
+<div viewModel="@id('vmCrear') @init('com.libro.viewModel.crearEstadoVM')" zclass="div_general_crear_Estado">
+	<div zclass="cabecera_crear">
+		<div zclass="div_cab" align="left">
+			<label value="@bind(vmCrear.nombres)" zclass="lbl_normal3_"/><label value=", "/>
+			<label value="@bind(vmCrear.apellidos)" zclass="lbl_normal3_"/>
+		</div>
+		<div zclass="div_cab" align="center">
+			<label value="@bind(vmCrear.correo)" zclass="lbl_normal3_"/>
+		</div>
+		<div  zclass="div_cab">
+			<label value="x" zclass="lbl_cerrar" onClick="@global-command('cerrarCrearEstado')"/>
+		</div>
+	</div>
+	<div zclass="div_content">
+		<div>
+			<label value="Detalle de Reclamo : " zclass="lbl_normal3_ strong"></label>
+			<label value="@bind(vmCrear.reclamo.detallereclamo)" zclass="lbl_normal3_"></label>
+		</div>
+		<div visible="@bind(vmCrear.solicitud)">
+			<label value="Solicitud de Reclamo : " zclass="lbl_normal3_ strong"></label>
+			<label value="@bind(vmCrear.reclamo.solicitudreclamo)" zclass="lbl_normal3_"></label>
+		</div>
+		<separator bar="true"></separator>
+		<div zclass="div_otromotivo">
+			<combobox width="100%" model="@bind(vmCrear.listaSolucion)" placeholder="Solucion" onChange="@command('changeSolucion',id=self.selectedItem.value,valor=self.selectedItem.label)" readonly="true">
+				<template name="model">
+					<comboitem value="@bind(each.idsolucion)" label="@bind(each.detalles)"></comboitem>
+				</template>
+			</combobox>
+		</div>
+		<div visible="@bind(vmCrear.verOtraSolucion)" zclass="div_otromotivo">
+			<textbox placeholder="escriba otra solucion" zclass="textboxuppercase" onChange="@command('changeOtraSolicion',valor=self.value)"></textbox>
+			<separator bar="false"/>
+			<checkbox value="0" checked="false" label="Agregar a la base de datos" zclass="cb_bd" onCheck="@command('checkAgregarBD')"></checkbox>
+		</div>
+		<space></space>
+		<div>
+			<ckeditor value="@bind(vmCrear.detallesSolucion) @save(vmCrear.detallesSolucion,before='SolucionarReclamo')" id="txtdetallesSolucion" height="200px"/>
+		</div>
+		<div zclass="div_botones" align="right">
+			<label value="Solucionar" zclass="btn_solucionar" onClick="@command('solucionar',comp=self) @global-command('cerrarCrearEstado')"/>	
+			<button label="Subir" image="img/icon/logosubir.png" 
+								onUpload="@command('uploadFile',reclamo=vmForm.reclamo,upload=event,comp=self)"
+								upload="true,multiple=true"/>
+			<button label="Eliminar" onClick="@command('cancelar',comp=self)"/>
+		</div>
+	</div>
+</div>
+</zk>

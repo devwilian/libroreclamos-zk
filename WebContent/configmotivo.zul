@@ -1,0 +1,43 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/reportes.css"></style>
+<style src="css/general.css"></style>
+<div viewModel="@id('vmMotivo') @init('com.libro.viewModel.configmotivoVM')">
+	<listbox model="@bind(vmMotivo.listaMotivo)">
+	    <listhead>
+	        <listheader width="80px"><label value="Codigo" zclass="lbl_header"></label></listheader>
+	        <listheader><label value="Descripcion" zclass="lbl_header"></label></listheader>
+	        <listheader width="150px"><label value="Opciones" zclass="lbl_header"></label></listheader>
+	    </listhead>
+	    <template name="model">
+	    	<listitem>
+		        <listcell><label value="@bind(each.idmotivoreclamo)" /></listcell>
+		        <listcell>
+		        	<label value="@bind(each.descripcion)"/>
+		        </listcell>
+		        <listcell>
+		        	<label value="Editar" zclass="btnEditar" onClick="@command('actualizarSede',id=each.idmotivoreclamo,valor=each.descripcion,comp=self)"/>
+		        	<space/>
+		        	<label value="Eliminar" onClick="@command('eliminarSede',id=each.idmotivoreclamo,valor=each.descripcion,comp=self)" zclass="btnEliminar"/>
+		        </listcell>
+		    </listitem>
+	    </template>
+	</listbox>
+	<separator bar="false"></separator>
+	<div align="center">
+		<div visible="@bind(vmMotivo.editable)">
+			<textbox id="txteditar" value="@bind(vmMotivo.motivo.descripcion)" placeholder="Editar" width="60%" zclass="textboxuppercase"/>
+			<label value="Guardar" onClick="@command('guardarModificado',valor=txteditar.value,comp=self)" zclass="btnEditar"/>
+			<label value="Cancelar" onClick="@command('cancelar')" zclass="btnEliminar"/>
+		</div>
+		<space></space>
+		<button id="btnareanuevo" visible="@bind(!vmMotivo.verNuevo)" label="Agregar Nuevo Motivo" onClick="@command('verCampoNuevo')"></button>
+		<div visible="@bind(vmMotivo.verNuevo)">
+			<textbox id="txtmotivo" value="" placeholder="NUEVO MOTIVO" zclass="textboxuppercase"></textbox>
+			<space></space>
+			<label value="Guardar" onClick="@command('guardarNuevoMotivo',valor=txtmotivo.value,comp=self)" zclass="btnEditar"></label>
+			<label value="Cancelar" onClick="@command('cancelar')" zclass="btnEliminar"></label>
+		</div>
+	</div>
+</div>
+</zk>

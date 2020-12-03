@@ -1,0 +1,6 @@
+<?page title="Imagenes" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Imagenes" border="normal" viewModel="@id('vm') @init('com.libro.viewModel.imagenesreclamoVM')">
+	<label value="@bind(vm.label)"></label>
+</window>
+</zk>

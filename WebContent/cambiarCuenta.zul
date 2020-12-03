@@ -1,0 +1,88 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="css/general.css"></style>
+	<style src="css/updateUser.css"/>
+  <div viewModel="@id('vmUpdateUser') @init('com.libro.viewModel.updateUsuarioVM')"
+  		zclass="div_contenedor_nuevo_updateUser">
+      <div zclass="div_content_datos_updateUser">
+      		<div>
+      			<label value="Foto" sclass="lbl_llenar_datos"/>
+				<separator bar="true"/>
+<!--       			<tabbox width="100%"> -->
+<!-- 			        <tabs id="tabs"> -->
+<!-- 			            <tab label="Subir Foto" onSelect="@command('subirFoto')"/> -->
+<!-- 			            <tab label="Elegir Foto" onSelect="@command('elegirFoto')"/> -->
+<!-- 			        </tabs> -->
+<!-- 			    </tabbox> -->
+			    <div visible="@bind(vmUpdateUser.subir)">
+				    <div zclass="div_content_img_list_update">
+					    <div zclass="div_img_list" width="150px"> 
+					        <image height="120px" width="100%" src="@load(vmUpdateUser.oUsuarioUpdate.imgUsuario)"></image>
+					     </div>
+					     <button label="SUBIR IMAGEN" onClick="@command('uploadImagen',componente=self)"></button>
+				     </div>
+			    </div>
+<!-- 			    <div visible="@bind(vmUpdateUser.elegir)"> -->
+<!-- 				    Elegir Foto -->
+<!-- 			    </div> -->
+			</div>
+			<space></space>
+	     	<div>
+		       <label value="DNI:" sclass="lbl_llenar_datos"/>
+		       <separator bar="true"/>
+		       <textbox width="100%" zclass="textbox" placeholder="Ingrese DNI" onChange="@command('modificarDni',dni=self.value,componente=self)"
+		       			value="@bind(vmUpdateUser.oUsuarioUpdate.cNroDoc) @save(self.value,before='actualizarUsuario')" readonly="true"/>
+		     </div>
+		     <space></space>
+		     <div >
+		       <div style="display:flex;">
+		       	<label value="Password:" sclass="lbl_llenar_datos"/>
+		       	<space orient="vertical"></space>
+		       	<div sclass="estilo_ver_contrasenia" onClick="@command('habilitarContrasenia')">
+		       		<span sclass="icon-eye-minus"/>
+		       	</div>
+		       </div>
+		       <separator bar="true"/>
+		       <label value="La contraseña debe tener un tamaño minimo de 8 y debe contener al menos un caracter minuscula, un caracter en mayuscula,un numero y uno de estos simbolos {#,@,$,%}"></label>
+		       <div zclass="flex">
+		       	<textbox id="txtcontra" type="@bind(vmUpdateUser.tipoContrasena)" zclass="textbox" placeholder="Ingrese Password" onChange="@command('modificarContrasenia',clave=self.value,componente=self)"
+		       			value="@bind(vmUpdateUser.oUsuarioUpdate.cClave) @save(self.value,before='actualizarUsuario')" ></textbox>
+		       <image src="img/icon/ojo.png" height="20px" sclass="verContra" onClick="@command('vercontrasena')"></image>
+		       </div>
+		     </div>
+	    </div>
+	    <space orient="vertical"></space>
+		 <div zclass="div_content_datos_updateUser">
+		      <div>
+		       <label value="Apellidos:"/>
+		       <separator bar="true"/>
+		       <textbox width="100%" zclass="textboxuppercase" placeholder="Ingrese Nombre" 
+		       			value="@bind(vmUpdateUser.oUsuarioUpdate.cNombres) @save(self.value,before='actualizarUsuario')"></textbox>
+		     </div>
+		     <div>
+		       <label value="Nombres:"/>
+		       <separator bar="true"/>
+		       <textbox width="100%" zclass="textboxuppercase" placeholder="Ingrese Nombre" 
+		       			value="@bind(vmUpdateUser.oUsuarioUpdate.apellidos) @save(self.value,before='actualizarUsuario')"></textbox>
+		     </div>
+		     <space></space>
+		     <div>
+		       <label value="Fecha Nacimiento:"/>
+		       <separator bar="true"/>
+		       <datebox format="yyyy-MM-dd" readonly="true" value="@bind(vmUpdateUser.oUsuarioUpdate.dFechaNac) @save(self.value,before='actualizarUsuario')"/>
+		     </div>
+		     <space></space>
+		     <div>
+		       <label value="Correo:"/>
+		       <separator bar="true"/>
+		       <textbox width="100%" zclass="textbox" placeholder="Ingrese Correo Electronico"  onChange="@command('modificarCorreo',correo=self.value,componente=self)"
+		       			value="@bind(vmUpdateUser.oUsuarioUpdate.cCorreo) @save(self.value,before='actualizarUsuario')"></textbox>
+		     </div>
+		     <space></space>
+		     <div align="center">
+		     	<button label="ACTUALIZAR"  onClick="@command('actualizarUsuario',componente=self) @global-command('cerrarVentana')"/>
+		     	<button label="CANCELAR"  onClick="@global-command('cerrarVentana')"/>
+		     </div>
+		 </div>
+     </div>
+</zk>

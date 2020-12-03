@@ -1,0 +1,49 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/login.ico"?>
+<zk>
+<style src="css/zk.css"></style>
+<style src="css/general.css"></style>
+<style src="css/login.css"></style>
+<style src="https://fonts.googleapis.com/css?family=Titillium Web"></style>
+	<div viewModel="@id('vm') @init('com.libro.viewModel.loginVM')" zclass="div_content_general_login" align="center">
+		<div zclass="div_content_login">
+			<div zclass="div_content_info">
+			<space></space>
+				<div zclass="flex">
+					<label value="ADMINISTRAR RECLAMOS" zclass="lbl_titulo1"/>
+					<image src="img/icon/logologin.png" height="100px"/>
+				</div>
+				<div zclass="div_content_ingresar_datos_usuario" align="left">
+					<div zclass="flex div_txt_log">
+						<image src="img/icon/user.png" height="20px"/>
+						<space></space>
+						<textbox value="" id="tbUserName" type="text" 
+							 placeholder="USUARIO"
+							 zclass="txt_log"
+							 onOK="tbUserPass.focus()"
+							 onChange="@command('enviarUsername',valor=self.value)"/>
+					</div>
+					<space></space>
+					<div zclass="flex div_txt_log">
+						<image src="img/icon/pass.png" height="20px"/>
+						<space></space>
+						<textbox value="" id="tbUserPass" type="@bind(vm.clave)" 
+							 placeholder="CONTRASEÑA"
+							 zclass="txt_log"
+							 onChange="@command('enviarpassword',valor=self.value)"
+						     onOK="@command('ingresar',user=tbUserName.value,pass=tbUserPass.value,compuser=tbUserName,comppass=tbUserPass,comp=self)"/>
+						<image src="img/icon/ojo.png" height="15px" style="cursor:pointer;" onClick="@command('verClave')"></image>
+					</div>
+					<space></space>
+				</div>
+				<div align="right">
+		    		<div zclass="btn_ padding1" width="100px" 
+		    		onClick="@command('ingresar',user=tbUserName.value,pass=tbUserPass.value,compuser=tbUserName,comppass=tbUserPass,comp=self)">
+			    		<label value="INGRESAR"/>
+			    	</div>
+		    	</div>
+		    	<space></space>
+			</div>
+		</div>
+	</div>  
+</zk>

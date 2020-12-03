@@ -1,0 +1,58 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/reportegrafico.css"></style>
+<div viewModel="@id('vmRe') @init('com.libro.viewModel.graficoVM')">
+	<label value="@bind(vmRe.datos[2])" sclass="lbl_nropersonas"/><label value=" PERSONAS"/>
+	<div zclass="flex_grafico">
+		<div zclass="div_leyenda" width="90%">
+			<div width="100%">
+				<label value="LEYENDA"></label>
+<!-- 				<div> -->
+<!-- 					<div zclass="flex"> -->
+<!-- 						<div zclass="color_cusco"/><div style="padding-left:5px;"><label value="Quejas y reclamos de Cusco"/></div> -->
+<!-- 					</div> -->
+<!-- 					<div zclass="flex"> -->
+<!-- 						<div zclass="color_machu"/><div style="padding-left:5px;"><label value="Quejas y reclamos de Machupicchu"/></div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				<listbox model="@bind(vmRe.listaSedeColor)">
+				    <template name="model">
+				    	<listitem>
+					        <listcell>
+					        	<div zclass="flex">
+					        		<div zclass="@bind(each.estilo)"/>
+						        	<div style="padding-left:5px;">
+						        		<label value="@bind(each.cantidad)"/><space/><label value="Quejas y reclamos de"/><space></space><label value="@bind(each.nombre)"/>
+						        	</div>
+					        	</div>
+					        	<separator bar="false"></separator>
+					        </listcell>
+					    </listitem>
+				    </template>
+				</listbox>
+			</div>
+		</div>
+		<div zclass="div_grafico" align="left">
+			<div>
+				<zhighcharts id="pie" model="@load(vmRe.grafica)" height="300px" width="300px"/>
+				<zscript>
+					<![CDATA[
+					pie.setType("pie");
+					pie.setTitle("Reporte quejas y reclamos");
+					pie.setPlotOptions("{"+
+									      "pie: {"+
+									      "allowPointSelect: true,"+
+									      "cursor: 'pointer',"+
+									      "dataLabels: {"+
+									        "enabled: false"+
+									      "},"+
+									      "showInLegend: false"+
+									    "}"+
+									  "}");
+					]]>
+				</zscript>
+			</div>
+		</div>
+	</div>
+</div>
+</zk>

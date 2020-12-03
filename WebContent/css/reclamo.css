@@ -1,0 +1,80 @@
+.div_content_{
+	width: 100%;
+}
+.div_info{
+	width:30%;
+	padding-left: 10px;
+}
+.div_info_{
+	width:70%;
+}
+.z-label{
+	font-family: 'Bahnschrift';
+	font-size: 18px;
+}
+.lbl_reclamo{
+	background: #EBECEC;
+	border-bottom: 2px solid #9D9E9E;
+	padding-left: 10px;
+}
+.titulo{
+	font-size: 22px;
+}
+.lbl_btn{
+	cursor: pointer;
+	padding: 3px;
+	font-family: 'Bahnschrift';
+	font-size: 18px;
+}
+.lbl_btn:hover{
+	border-bottom: 5px solid #EEEEEE;
+}
+.lbl_btn:active{
+	border-top:1px solid gray;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+	border-bottom: 5px solid #EEEEEE;
+	border-radius: 3px;
+}
+.z-listheader-content, .z-listcell-content, .z-listgroup-content, .z-listgroupfoot-content, .z-listfooter-content {
+    font-family: 'Titillium Web';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.9);
+    line-height: 1.3em;
+    overflow: hidden;
+    padding: 1px 1px;
+}
+.stilofono{
+	display: flex;
+}
+.div_botones{
+	width: 60%;
+}
+.win_content_reserva_exitosa{
+	width: 80%;
+}
+@media (max-width:900px){
+	.win_content_reserva_exitosa{
+		width: 100%;
+	}
+	.div_info{
+		width: 100%;
+	}
+	.div_info_{
+		width: 100%;
+		padding-left: 10px;
+	}
+	.stilofono{
+		display: block;
+	}
+	.lbl_color{
+		font-weight: bold;
+	}
+	.div_botones{
+		width: 100%;
+		align-items: center;
+	}
+}

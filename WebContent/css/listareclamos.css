@@ -1,0 +1,213 @@
+.vistagrande{
+	display:block;
+}
+.vistatelefono{
+	display: none;
+}
+.div_btn_ordenar{
+	display: flex;
+	background: #EBECEC;
+	border-radius:5px;
+	padding-bottom:10px;
+	padding-top: 10px;
+}
+.div_btn_{
+	justify-content: center;
+	width: 100%;
+}
+.lbl_lista{
+	border-bottom: 3px solid #808080;
+}
+.lbl_lista:active{
+	color: white;
+}
+.lbl_lista:hover{
+	border-bottom: 3px solid #EEEEEE;
+}
+.div_btn{
+	cursor: pointer;
+}
+.div_btn:active{
+	background: #EEEEEE;
+	width: 150px;
+	border-radius: 10px;
+}
+.div_lista{
+	padding-top: 10px;
+	width: 100%;
+}
+.btn_ordenar{
+	width: 140px;
+	cursor: pointer;
+}
+.btn_ordenar:hover{
+	border: 3px solid #EEEEEE;
+	border-radius: 20px;
+}
+.btn_ordenar:active{
+	background:#EEEEEE;
+	color: #FFFFFF;
+}
+.button_crear_estado{
+	font-family:'Agency FB';
+	font-weight: bold;
+	cursor: default;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-radius: 5px;
+}
+.button_crear_estado:hover{
+	border: 1px solid #808080;
+}
+.button_crear_estado:active{
+	background: #C5C6C6;
+	color:#EEEEEE;
+}
+.win_model{
+	background: #FFFF;
+	border: 1px solid #4b4b4b;
+	border-radius: 5px;
+}
+.win_content_reserva_exitosa.z-window {
+	width:80%;
+	border-radius: 3px;
+	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+	-ms-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+	background: white;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 0;
+}
+.win_content_reserva_exitosa.z-window .z-window-content {
+	border-radius: 5px;
+}
+label{
+	font-family: 'Bahnschrift';
+}
+.lbl_header{
+	font-family: 'Agency FB';
+	font-size: 20px;
+	font-weight: bold;
+	color: #EEEEEE;
+}
+.correo{
+	text-transform: lowercase;
+	font-family: 'Bahnschrift';
+	font-size: 18px;
+}
+.z-listcell{
+	border-right: 1px solid #8080801A;
+}
+.z-paging{
+	padding: 4px 10px 3px;
+	display: flex;
+	justify-content: center;
+}
+.z-paging-info{
+	display: none;
+}
+.z-paging .z-paging-icon{
+	font-size: 40px;
+	line-height: 16px;	
+}
+.z-paging-button[disabled] {
+    color: rgba(288,28,68,0.34);
+    cursor: default;
+}
+.z-paging-button{
+	color: #EEEEEE;
+}
+.z-paging-input:focus {
+    border-color: #EEEEEE;
+}
+.z-paging-input {
+
+    font-family: 'Bahnschrift';
+    font-size: 25px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.9);
+    width: 42px;
+    height: 36px;
+    border: none;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    background: transparent;
+    margin-left: 6px;
+    padding: 8px;
+    line-height: 16px;
+    vertical-align: baseline;
+}
+.z-paging-text{
+	font-family: 'Bahnschrift';
+    font-size: 25px;
+}
+.z-paging-button:hover {
+    background-color: transparent;
+}
+.block{
+	display: block;
+}
+.lbl_telefoon{
+	font-family: 'Agency FB';
+	font-size:20px;
+	color: #EEEEEE;
+	font-weight: bold;
+}
+.img_refresh{
+	cursor: pointer;
+}
+.img_refresh:active{
+	background: gray;
+	border-radius: 3px;
+}
+@media (max-width:900px){
+	.visibletelefono{
+		display: none;
+	}
+	.btn_ordenar{
+		width: 25%;
+	}
+	.btn_ordenar:hover{
+		border:none;
+		border-radius: none;
+	}
+	.btn_ordenar:active{
+		border:none;
+		border-radius: none;
+		background: none;
+	}
+	.vistagrande{
+		display:none;
+	}
+	.vistatelefono{
+		display: block;
+	}
+	label{
+		font-size: 18px;
+	}
+	.button_crear_estado{
+		font-size: 22px;
+		border-bottom: 2px solid #EEEEEE;
+	}
+	.telefono{
+		justify-content: space-around;
+	}
+	.win_content_reserva_exitosa.z-window {
+		width:100%;
+	}
+	.win_content_reserva_exitosa.z-window .z-window-content {
+		border-radius: 1px;
+	}
+}

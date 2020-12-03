@@ -1,0 +1,50 @@
+<?page title="Reportes" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"></style>
+<style src="css/reportes.css"></style>
+<style src="https://fonts.googleapis.com/css?family=Titillium Web"></style>
+<div viewModel="@id('vmRepor') @init('com.libro.viewModel.reporteVM')">
+<div visible="@bind(vmRepor.visibleInicio)">
+		<div zclass="estilo_reportes" width="100%" align="center">
+			<div align="center">
+				<div id="reporteresueltos" zclass="icono_reportes" onClick="@command('cambio',id=self.id)">
+					<image src="img/icon/foco.png" width="50px"></image>
+					<label value="RESUELTOS" zclass="lbl_reporte"></label>
+				</div>
+			</div>
+			<div align="center">
+				<div id="reporteporsede" zclass="icono_reportes" onClick="@command('cambio',id=self.id)">
+					<image src="img/icon/ubicacion.png" width="50px"></image>
+					<label value="REPORTE POR SEDE" zclass="lbl_reporte"></label>
+				</div>
+			</div>
+			<div align="center">
+				<div id="reporteporfecha" zclass="icono_reportes" onClick="@command('cambio',id=self.id)">
+					<image src="img/icon/porfecha.png" width="50px"></image>
+					<label value="REPORTE POR FECHA" zclass="lbl_reporte"></label>
+				</div>
+			</div>
+			<div align="center">
+				<div id="reporteporusuario" zclass="icono_reportes" onClick="@command('cambio',id=self.id)">
+					<image src="img/icon/user.png" width="50px"></image>
+					<label value="REPORTE POR USUARIO" zclass="lbl_reporte"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div visible="@bind(vmRepor.visibleReporteResueltos)">
+			<include src="reporteresueltos.zul"></include>
+		</div>
+		<div visible="@bind(vmRepor.visibleReportePorSede)">
+			<include src="reporteporsede.zul"></include>
+		</div>
+		<div visible="@bind(vmRepor.visibleReportePorFecha)">
+			<include src="reporteporfecha.zul"></include>
+		</div>
+		<div visible="@bind(vmRepor.visibleReportePorUsuario)">
+			<include src="reporteporusuario.zul"></include>
+		</div>
+	</div>
+</div>
+</zk>

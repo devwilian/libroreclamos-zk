@@ -1,0 +1,96 @@
+<?page title="Ascpectos puntuales" contentType="text/html;charset=UTF-8"?>
+<zk>
+<div viewModel="@id('vmAspec' ) @init('com.libro.viewModel.aspectosgeneralesVM')">
+	<div zclass="cab_cabecerageneral_" align="left" height="121px">
+		<div zclass="div_cabecera_info" height="115px">
+			<div zclass="div_info_cabecera">
+				<div><label value="LIBRO DE RECLAMACIONES" zclass="lbl_titulo2"/></div>
+				<div><label value="Telefono: " zclass="lbl_normal5"/><label value="@bind(vmAspec.empresa.telefono1)" zclass="lbl_normal5"/><space></space><label value="@bind(vmAspec.empresa.telefono2)" zclass="lbl_normal5"/></div>
+				<div><label value="Email: " zclass="lbl_normal5"/><label value="@bind(vmAspec.empresa.correo)" zclass="lbl_normal5"/></div>
+			</div>
+			<div>
+				<image src="img/libro.png" zclass="img_cabecera"/>
+			</div>
+		</div>
+	</div>
+	<!-- ESTILO TELEFONO -->
+	<div zclass="cab_cabecerageneral_phone" align="center" height="121px">
+		<div zclass="div_cabecera_info" height="115px">
+			<div>
+				<image src="img/libro.png" zclass="img_cabecera"/>
+			</div>
+			<div zclass="div_info_cabecera">
+				<div><label value="LIBRO DE RECLAMACIONES" zclass="lbl_titulo2"/></div>
+				<div><label value="Telefono: " zclass="lbl_normal5"/><label value="@bind(vmAspec.empresa.telefono1)" zclass="lbl_normal5"/><space></space><label value="@bind(vmAspec.empresa.telefono2)" zclass="lbl_normal5"/></div>
+				<div><label value="Email: " zclass="lbl_normal5"/><label value="@bind(vmAspec.empresa.correo)" zclass="lbl_normal5"/></div>
+			</div>
+		</div>
+	</div>
+	<!-- ESTILO TELEFONO -->
+	
+	<div style="background-color: #030303;" height="15px"/>
+	<separator bar="false"/>
+	<div align="center" zclass="degrade_izq"> <label value="TERMINOS GENERALES" zclass="lbl_titulo1 lbl_phone"/> </div>
+	<div zclass="div_body_flex">
+		<!-- image -->
+		<div zclass="div_img" width="30%">
+			<image src="img/person.png" height="300px"/>
+		</div>
+		<!-- contenido -->
+		<div zclass="div_contenido_general">
+			<div zclass="div_body" align="justify">
+				<div><label zclass="lbl_titulo3" value="Estimado Usuario"/></div>
+				<div><label zclass="lbl_normal1" value="Le solicitamos que lea los términos generales del libro de reclamaciones 
+virtual para poder brindarles un mejor servicio de atención."/></div>
+				<div zclass="div_terminos_generales">
+					<div zclass="div_terminos_generales_ div_body_flex_">
+						<image src="img/icon/circle-asteris.png" height="14px" width="14px"/>
+						<div style="padding-left:5px;">
+							<label value="Los datos de domicilio deben ser llenados correctamente" zclass="lbl_normal1"/>
+						</div>
+					</div>
+					<div zclass="div_terminos_generales_ div_body_flex_">
+						<image src="img/icon/circle-asteris.png" height="14px" width="14px"/>
+						<div style="padding-left:5px;">
+							<label value="Los datos de contacto deben ser los correctos, a fin de emitir la 
+comunicación de respuesta o de solicitar mayor información." zclass="lbl_normal1"/>
+						</div> 
+					</div>
+					<div zclass="div_terminos_generales_ div_body_flex_">
+						<image src="img/icon/circle-asteris.png" height="14px" width="14px"/>
+						<div style="padding-left:5px;">
+							<label value="Le recomendamos que detalle los hechos motivo de la reclamación
+y de ser posible le pedimos que identifique al servidor reclamado." zclass="lbl_normal1"/> 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div zclass="div_body_ tamano">
+				<div zclass="div_btn_izq" align="center">
+					<div id="btninicio" zclass="div_btn_aux" onClick="@global-command('changeInterface',id=self.id)">
+						<image src="img/icon/home.png" height="30px"/>
+						<label value="INICIO" zclass="lbl_titulo2 visiblephone"/>
+					</div>
+				</div>
+				<div zclass="div_btn_izq" align="center">
+					<div id="btnaceptar" zclass="div_btn_aux" onClick="@global-command('changeInterface',id=self.id)">
+						<image src="img/icon/checked.png" height="30px"/>
+						<label value="ACEPTAR" zclass="lbl_titulo2 visiblephone"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div zclass="footer_general blanco" onClick="@command('iraSeguimiento')" align="right">
+		<div>
+			<label value="SEGUIMIENTO DE RECLAMO" zclass="lbl_titulo3 btn_seguimiento blanco"/>
+		</div>
+		<div align="center">
+			<label value="Copyright ©  Eddy on Soft Exp: 2099-2018   Np: 1204 - 2018" style="color:white;"></label>
+		</div>
+	</div>
+	<window width="700px" height="auto" zclass="win_model" mode="modal" visible="@bind(vmAspec.seguimiento)">
+		<include src="seguimiento.zul"/>
+	</window>
+</div>
+</zk>

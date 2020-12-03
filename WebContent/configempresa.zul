@@ -1,0 +1,107 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/configempresa.css"></style>
+<div viewModel="@id('vmEmpre') @init('com.libro.viewModel.configempresaVM')" zclass="div_empresa_general">
+<div visible="@bind(!vmEmpre.editable)">
+	<grid>
+		<rows>
+			<row>
+				<label value="Razon Social Empresa  "/>
+				<label value="@bind(vmEmpre.empresa.nombre)"></label>
+			</row>
+			<row>
+				<label value="Numero de Telefono 1  "/>
+				<label value="@bind(vmEmpre.empresa.telefono1)"></label>
+			</row>
+			<row>
+				<label value="Numero de Telefono 2  "/>
+				<label value="@bind(vmEmpre.empresa.telefono2)"></label>
+			</row>
+			<row>
+				<label value="Correo electronico  "/>
+				<label value="@bind(vmEmpre.empresa.correo)"></label>
+			</row>
+			<row>
+				<label value="Direccion  "/>
+				<label value="@bind(vmEmpre.empresa.direccion)"></label>
+			</row>
+			<row>
+				<label value="Terminos y Condiciones  "/>
+				<label value="@bind(vmEmpre.empresa.terminosycondiciones)"></label>
+			</row>
+		</rows>
+	</grid>
+	<grid visible="false">
+		<rows>
+			<row>
+				<label value="Configuracion de Captcha"></label>
+			</row>
+			<row>
+				<label value="Public Site Key  "/>
+				<label value="@bind(vmEmpre.empresa.publicKey)"></label>
+			</row>
+			<row>
+				<label value="Secret Site Key  "/>
+				<label value="@bind(vmEmpre.empresa.secretKey)"></label>
+			</row>
+		</rows>
+	</grid>
+	<div align="center">
+		<button label="Editar" onClick="@command('editar')"></button>
+	</div>
+</div>
+<div visible="@bind(vmEmpre.editable)">
+	<grid>
+		<rows>
+			<row>
+				<label value="Razon Social Empresa  "/>
+				<textbox width="200px" value="@bind(vmEmpre.empresa.nombre) @save(vmEmpre.empresa.nombre)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Numero de Telefono 1  "/>
+				<textbox width="200px" value="@bind(vmEmpre.empresa.telefono1)" onChange="@command('changeNroTelefono',valor=self.value,opcion=1,comp=self)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Numero de Telefono 2  "/>
+				<textbox width="200px" value="@bind(vmEmpre.empresa.telefono2)" onChange="@command('changeNroTelefono',valor=self.value,opcion=2,comp=self)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Correo electronico  "/>
+				<textbox width="300px" value="@bind(vmEmpre.empresa.correo)" onChange="@command('changeCorreo',valor=self.value,comp=self)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Direccion  "/>
+				<textbox width="300px" value="@bind(vmEmpre.empresa.direccion) @save(vmEmpre.empresa.direccion)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Terminos y Condiciones"/>
+				<textbox width="300px" value="@bind(vmEmpre.empresa.terminosycondiciones) @save(vmEmpre.empresa.terminosycondiciones)" zclass="txtbox"/>
+			</row>
+		</rows>
+	</grid>
+	<grid visible="false">
+		<rows>
+			<row>
+				<label value="Configuracion de Captcha"></label>
+			</row>
+			<row>
+				<label value="Public Site Key  "/>
+				<textbox width="400px" value="@bind(vmEmpre.empresa.publicKey) @save(vmEmpre.empresa.publicKey)" zclass="txtbox"/>
+			</row>
+			<row>
+				<label value="Secret Site Key  "/>
+				<textbox width="400px" value="@bind(vmEmpre.empresa.secretKey) @save(vmEmpre.empresa.secretKey)" zclass="txtbox"/>
+			</row>
+		</rows>
+	</grid>
+	<grid>
+		<rows>
+			<row align="center">
+				<button label="Actualizar" onClick="@command('actualizar',comp=self)"></button>
+				<button label="Cancelar" onClick="@command('editar')"></button>
+			</row>
+		</rows>
+	</grid>
+</div>
+</div>
+</zk>

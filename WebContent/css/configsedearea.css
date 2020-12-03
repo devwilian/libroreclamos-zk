@@ -1,0 +1,91 @@
+.cmb_sede-input{
+	font-family:'Titillium Web';
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom:2px solid #B2B3B3;
+	border-radius: 0px;
+	text-transform: uppercase;
+}
+.cmb_sede-input[readonly]{
+	background: transparent;
+}
+.cmb_sede-input:hover{
+	border-bottom-color: #EEEEEE;
+}
+.cmb_sede-input:focus{
+	border-bottom:3px solid #EEEEEE;
+	border-right: 0px;
+}
+.cmb_sede-input:active{
+	border-right: 0px;
+}
+.cmb_sede-button{
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom:2px solid #B2B3B3;
+	border-radius: 0px;
+}
+.cmb_sede-button:hover{
+	border-bottom-color: #EEEEEE;
+	background: #f8c2cd;
+}
+.cmb_sede-button:active{
+	border-bottom:3px solid #EEEEEE;
+	background: #EEEEEE;
+}
+.cmb_sede-popup{
+	border: 1px solid #EEEEEE;
+	border-radius:1px;
+	background: white;
+}
+.z-comboitem:hover {
+    background-color: #f8c2cd;
+}
+.cmb_sede-open .cmb_sede-button{
+	border-color: #EEEEEE;
+    border-bottom-color: #EEEEEE;
+}
+
+.btnEditar{
+	font-size: 18px;
+	background: #545454;
+	border-radius: 3px;
+	padding: 3px;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: 'Agency FB';
+}
+.btnEditar:hover{
+	background: #1abc9c;
+}
+.btnEliminar{
+	font-size:18px;
+	background: #545454;
+	border-radius: 3px;
+	padding: 3px;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: 'Agency FB';
+}
+.btnEliminar:hover{
+	background: #e74c3c;
+}
+.div_contenido1{
+	width: 40%;
+}
+.div_contenido2{
+	width: 55%;
+}
+.div_general{
+	display: flex;
+}
+.lbl_header{
+	font-family: 'Agency FB';
+}
+.z-messagebox-buttons {
+    text-align: right;
+    display: flex;
+    justify-content: space-evenly;
+}

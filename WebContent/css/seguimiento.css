@@ -1,0 +1,15 @@
+.lbl_btn{
+	cursor: pointer;
+	font-family: 'Bahnschrift';
+	padding: 1px;
+}
+.lbl_btn:hover{
+	border-bottom: 2px solid #EEEEEE;
+}
+.lbl_btn:active{
+	border-bottom: 3px solid #EEEEEE;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	border-right: 1px solid #EEEEEE;
+	border-radius: 3px;
+}

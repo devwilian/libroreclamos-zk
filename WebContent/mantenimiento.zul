@@ -1,0 +1,36 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<div viewModel="@id('vmMan') @init('com.libro.viewModel.mantenimientoVM')">
+	<div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		<div><button label="CONFIGURACION CAPTCHA" zclass="btn_mantenimiento"></button></div>
+		<div>
+			<include></include>
+		</div>
+		
+	</div>
+</div>
+</zk>

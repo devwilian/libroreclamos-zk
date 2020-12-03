@@ -1,0 +1,330 @@
+.cab_cabecerageneral{
+	background-image: url("../img/imagebackground.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: top;
+}
+.cab_cabecerageneral_phone{
+	display: none;
+}
+.cab_cabecerageneral_{
+	background-image: url("../img/imagebackground2.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: top;
+	background-size: 100% 121px;
+}
+.cab_cabecerageneral_phone{
+	display: none;
+}
+.div_cabecera_info {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.img_cabecera{
+	height:80px;
+}
+.div_seguimiento{
+	background-color: #EBECEC;
+	padding-bottom: 10px;
+	padding-left: 200px;
+	padding-top: 10px;
+}
+.footer_general{
+	background-color: #030303;
+	padding-bottom: 10px;
+	padding-right: 200px;
+	padding-top: 10px;
+}
+.div_body_flex{
+	display: flex;
+	padding-top: 20px;
+}
+.div_body_flex_{
+	display: flex;
+	padding-top: 20px;
+}
+.div_body_ {
+    display: flex;
+/*     justify-content: center; */
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+.div_body{
+	width: 80%;
+}
+.tamano{
+	width: 80%;
+}
+.div_img{
+	position:relative;
+}
+.div_img img{
+	position:absolute;
+    bottom:5px;
+    right:10px;
+}
+.div_content{
+	min-height: 165px;
+	align-items: center;
+}
+
+.div_btn_izq{
+	width: 50%;
+}
+.div_btn_aux{
+	width: 50%;
+	border-bottom: 7px solid #727272;
+}
+.div_btn_aux:hover {
+    border-bottom: 7px solid #E6113F;
+    cursor: pointer;
+}
+.div_btn_aux:active {
+    border-bottom: 7px solid #E6113F;
+    border-top: 1px solid #E6113F;
+    border-left: 1px solid #E6113F;
+    border-right: 1px solid #E6113F;
+    border-radius:3px;
+    cursor: pointer;
+}
+.btn_seguimiento{
+	padding-left:10px;
+    padding-right:10px;
+}
+.btn_seguimiento:hover{
+	border-bottom: 7px solid #E6113F;
+	cursor: pointer;
+}
+.btn_seguimiento:active{
+	border-bottom: 7px solid #E6113F;
+    border-top: 2px solid #757575;
+    border-left: 2px solid #757575;
+    border-right: 2px solid #757575;
+    border-radius:3px;
+    cursor: pointer;
+}
+.div_terminos_generales{
+	padding-left: 40px;
+}
+.div_terminos_generales_{
+	padding: 5px;
+	align-items: baseline;
+}
+.div_item_align{
+	align-items: baseline;
+}
+.blanco{
+	color: #FFFFFF;
+}
+.black{
+	color: #2B2A29;
+}
+.displayflexcenter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/*************************** model seguimiento ****************************/
+.cab_cabecerageneral{
+	background-image: url("../img/imagebackground.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: top;
+}
+.win_model{
+	width: 60%;
+}
+.div_cabecera_info_segui{
+	display: flex;
+	justify-content: end;
+	align-items: flex-start;
+}
+.div_titulo_cabecera{
+	padding-top: 20px;
+	padding-right: 40px;
+}
+.content{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.win_model_{
+	background-color: #FAFAFA;
+}
+.win_model{
+	overflow: hidden;
+	zoom: 1;
+	border: 1px solid #DEDBDB;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	padding: 16px;
+	background-color: #FAFAFA;
+	box-shadow: 0px 0px 10px 2px #fafafa;
+}
+.txt_segui{
+	background: transparent;
+	font-size: 30px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom-color: #B2B3B3;
+	width: 100%;
+	text-transform: uppercase;
+}
+.txt_segui:hover{
+	border-bottom-color: #EEEEEE;
+}
+.txt_segui:focus{
+	border-bottom:3px solid #EEEEEE;
+}
+.btn_buscar{
+	padding:5px;
+	border-bottom: 3px solid transparent;
+}
+.btn_buscar:hover{
+	padding:5px;
+	border-bottom: 3px solid #EEEEEE;
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
+	border-radius: 5px;
+}
+.btn_buscar:active{
+	padding:5px;
+	background-color: #adadad;
+}
+.porcentaje50 {
+
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-left: 10px solid #848484;
+    border-right: 10px solid #EEEEEE;
+    border-top: 10px solid #848484;
+    border-bottom: 10px solid #EEEEEE;
+
+}
+.porcentaje100{
+	height: 60px;
+	width: 60px;
+	border-radius: 60px;
+	border: 10px solid #EEEEEE;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.div_cuad{
+	width: 80px;
+	padding-top: 5px;
+}
+.div_cuadrado_{
+	width: 10%;
+	height: 13px;
+	padding-left: 2px;
+	padding-right: 2px;
+	background: #999999;
+}
+.div_contenido{
+	width: 60%;
+}
+.div_contenido_general{
+	width:70%;
+}
+/*********************************** telefono ********************************/
+@media (max-width:900px){
+	.displayflexcenter{
+		display: block;
+	}
+	.win_model{
+		width: 88%;
+	}
+	.estilotelefono{
+		width: 90%;
+	}
+	.cab_cabecerageneral{
+		background-image: url("../img/imagebackground.png");
+	}
+	.div_seguimiento{
+		display: flex;
+		padding-left: 1px;
+	}
+	.div_contenido{
+		width: 96%;
+		padding-right: 1px;
+	}
+	.div_img{
+		display: none;
+	}
+	.footer_general{
+		padding-right: 1px;
+	}
+	.flex_phone{
+		display: flow-root;
+		display: -webkit-flow-root;
+		display: -moz-flow-root;
+		display: -ms-flow-root;
+		display: -o-flow-root;
+	}
+	.div_btn_izq{
+		width: 50%;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.visiblephone{
+		display: none;
+	}
+	.img_cabecera{
+		height: 40px;
+	}
+	.div_cabecera_info{
+		width: 100%;
+		display: grid;
+	}
+	.cab_cabecerageneral{
+		display: none;
+	}
+	.cab_cabecerageneral_phone{
+		display: block;
+		background-image: url("../img/imagebackground.png");
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-position: top;
+	}
+	.cab_cabecerageneral_{
+		display: none;
+	}
+	.cab_cabecerageneral_phone{
+		display: block;
+		background-image: url("../img/imagebackground2.png");
+		background-repeat: no-repeat;
+		background-size: 100%;
+		background-position: top;
+		background-size: 100%;
+	}
+	.lbl_phone{
+		font-size: 24px;
+	}
+	.div_contenido_general{
+		width:98%;
+	}
+	.div_body{
+		width: 95%;
+	}
+	.div_terminos_generales{
+		padding-left: 1px;
+	}
+	.tamano{
+		width: 96%;
+	}
+	.div_body_flex{
+		display: block;
+	}
+}

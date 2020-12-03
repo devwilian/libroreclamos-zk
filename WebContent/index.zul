@@ -1,0 +1,23 @@
+<?page viewport="width=device-width, initial-scale=1.0,  user-scalable=no"?>
+<?page title="Libro Reclamaciones" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/favicon.ico"?>
+
+<zk>
+<style src="fonts/zk.css"></style>
+<style src="css/general.css"></style>
+<style src="css/index.css"></style>
+<style src="https://fonts.googleapis.com/css?family=Titillium Web"></style>
+
+	<timer id="timerKeepAliveSession" repeats="true" delay="1800000" onTimer=""/>
+	<div viewModel="@id('vmIndex') @init('com.libro.viewModel.indexVM')">
+		<div>
+			<div id="itemInicio" visible="@bind(vmIndex.inicio)">
+				<include src="inicio.zul"/>	
+			</div>
+			<div id="itemAspectospuntuales" visible="@bind(vmIndex.aspectosgenerales)">
+				<include src="aspectospuntuales.zul"/>
+			</div>
+		</div>
+		
+	</div>
+</zk>

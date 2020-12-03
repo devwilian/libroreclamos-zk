@@ -1,0 +1,102 @@
+<?page title="Crear Usuario" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"></style>
+<style src="css/usuario.css"></style>
+<style src="https://fonts.googleapis.com/css?family=Roboto"></style>
+<div viewModel="@id('vmUser') @init('com.libro.viewModel.usuarioVM')" sclass="div_content_general" align="center">
+	<div zclass="div_content">
+		<grid>
+			<rows sclass="narrow">
+				<row>
+					<label value="DNI"></label>
+					<textbox width="100%" zclass="textboxuppercase" onChange="@command('changeDNI',valor=self.value)" value="@bind(vmUser.usuario.nrodoc)" maxlength="8"/>
+				</row>
+				<row>
+					<label value="Apellidos"/>
+	                <textbox width="100%" zclass="textboxuppercase" onChange="@command('changeApellidos',valor=self.value)" value="@bind(vmUser.usuario.apellidos)"/>
+				</row>
+				<row>
+					<label value="Nombres"/>
+	                <textbox width="100%" zclass="textboxuppercase" onChange="@command('changeNombres',valor=self.value)" value="@bind(vmUser.usuario.nombres)"/>
+				</row>
+				<row>
+	                <label value="Fecha de Nacimiento"/>
+	                <datebox sclass="datebox" format="dd-MM-yyyy" readonly="true" placeholder="Fecha Nacimiento" value="@bind(vmUser.usuario.fechanacimiento)" constraint="no future" onChange="@command('changeFechaNacimiento',valor=self.value)"/>
+	            </row>
+	            <row>
+	                <label value="Sexo"/>
+	                <radiogroup>
+	                	<radio value="M" label="M" onCheck="@command('changeSexo',valor=self.value)"></radio>
+	                	<space></space>
+	                	<radio value="F" label="F" onCheck="@command('changeSexo',valor=self.value)"></radio>
+	                </radiogroup>
+	            </row>
+	            <row>
+	                <label value="Correo"/>
+	                <textbox width="100%" zclass="textbox" onChange="@command('changeCorreo',valor=self.value)"/>
+	            </row>
+			</rows>
+		</grid>
+	</div>
+	<space></space>
+	<div zclass="div_content">
+		<div zclass="perfil_usuario">
+			<div align="center" zclass="div_elegiropcionperfil">
+				<label value="PERFIL EXISTENTE" zclass="lbl_btn_" onClick="@command('perfilExistente')"/>
+			</div>
+			<div align="center" zclass="div_elegiropcionperfil">
+				<label value="PERFIL NUEVO" zclass="lbl_btn_" onClick="@command('perfilNuevo')"/>
+			</div>
+		</div>
+		<div visible="@bind(vmUser.existente)" zclass="perfil_usuario">
+			<div zclass="div_elegiropcionperfil" align="left">
+				<label value="Perfil" />
+			</div>
+         	<div zclass="div_elegiropcionperfil" align="left">
+         		<combobox placeholder="Perfil" width="100%" model="@bind(vmUser.listaPerfil)" readonly="true" onChange="@command('changePerfil',valor=self.selectedItem.value)">
+	             	<template name="model">
+	             		<comboitem label="@bind(each.descripcion)" value="@bind(each.idperfil)"></comboitem>
+	             	</template>
+	             </combobox>
+         	</div>
+		</div>
+		<div visible="@bind(vmUser.nuevo)" zclass="perfil_usuario">
+			<div zclass="flex div_elegiropcionperfil">
+				 <label value="Nuevo Perfil" />
+	             <textbox zclass="textboxuppercase" onChange="@command('changeNombrePerfil',valor=self.value)"/>
+			</div>
+			<div zclass="div_elegiropcionperfil">
+				<label value="ACCESOS" zclass="lbl_normal3_ strong"/>
+                <listbox sclass="accesos">
+			     	<listhead>
+			     	<listheader/>
+			     	</listhead>
+		     		<listitem visible="true">
+			     		<listcell>
+			     			<div width="100%" visible="true">
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=1)" label="ACCESO A CREAR USUARIO" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesoregusuario)"/></div> -->
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=2)" label="ACCESO A RECIBIDOS" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesorecibidos)"/></div> -->
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=3)" label="ACCESO A PROCESOS" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesoprocesos)"/></div> -->
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=4)" label="ACCESO A REPORTES" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesoreportes)"/></div> -->
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=5)" label="ACCESO A LISTA USUARIOS" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesolistausuario)"/></div> -->
+<!-- 			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=6)" label="ACCESO A CONFIGURACIONES" sclass="select_acceso" width="100%" visible="@bind(vmUser.accesoaux.accesoconfiguracion)"/></div> -->
+			     				
+			     				
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=1)" label="ACCESO A CREAR USUARIO" sclass="select_acceso" width="100%"/></div>
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=2)" label="ACCESO A RECIBIDOS" sclass="select_acceso" width="100%"/></div>
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=3)" label="ACCESO A PROCESOS" sclass="select_acceso" width="100%"/></div>
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=4)" label="ACCESO A REPORTES" sclass="select_acceso" width="100%"/></div>
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=5)" label="ACCESO A LISTA USUARIOS" sclass="select_acceso" width="100%"/></div>
+			     				<div width="100%"><checkbox checked="false" onCheck="@command('setAcceso',opcion=6)" label="ACCESO A CONFIGURACIONES" sclass="select_acceso" width="100%"/></div>
+			     			</div>
+			     		</listcell>
+			     	</listitem>
+			     </listbox>
+			</div>
+		</div>
+	    <div align="center">
+	    	<button label="CREAR Y GUARDAR" image="img/icon/guardar.png" onClick="@command('guardarUsuario',comp=self)"></button>
+	    </div>
+	</div>
+</div>
+</zk>

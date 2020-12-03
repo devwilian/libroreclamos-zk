@@ -1,0 +1,79 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/listausuario.css"></style>
+<style src="css/general.css"></style>
+<div viewModel="@id('vmUser') @init('com.libro.viewModel.listausuariosVM')">
+	<div zclass="vistagrande">
+		<listbox sclass="lst" model="@bind(vmUser.listaUsuario)" width="100%" mold="paging" pageSize="10">
+		    <template name="model">
+		    	<listitem>
+			        <listcell>
+			        	<div zclass="div_usuario">
+				        	<div width="20%" align="center">
+				        		<image src="@load(each.imagen)" zclass="img_usuario"></image>
+				        	</div>
+				        	<div width="50%">
+				        		<div>
+				        			<label value="@bind(each.apellidos)" zclass="titulo1"/><space/> <label value="@bind(each.nombres)" zclass="titulo1"/>
+				        		</div>
+				        		<div>
+				        			<label value="@bind(each.perfil)" zclass="titulo2"></label>
+				        		</div>
+				        		<grid>
+							        <rows sclass="narrow">
+							            <row>
+							                <label value="Nro Documento" />
+							                <label value="@bind(each.nrodoc)"/>
+							            </row>
+							            <row>
+							                <label value="Sexo" />
+							                <label value="@bind(each.sexo)"/>
+							            </row>
+							            <row>
+							                <label value="Fecha Nacimiento"/>
+							                <label value="@bind(each.fechanacimiento)" />
+							            </row>
+							            <row>
+							                <label value="Correo" />
+							                <label value="@bind(each.correo)"/>
+							            </row>
+							            <row>
+							            	<label value="Estado"></label>
+							            	<div>
+							            		<label value="Activado" visible="@bind(each.estado)"></label>
+							            		<label value="Desactivo" visible="@bind(!each.estado)"></label>
+							            	</div>
+							            </row>
+							        </rows>
+							    </grid>
+				        	</div>
+				        	<div width="30%"  align="center">
+				        		<button label="Eliminar" onClick="@command('eliminarUsuario',valor=each.nrodoc)"></button>
+				        	</div>
+				        </div>
+			        </listcell>
+			    </listitem>
+		    </template>
+		</listbox>
+	</div>
+	<div zclass="vistatelefono">
+<!-- 		<listbox model="@bind(vmReporte.listaSolucionado)" width="100%" mold="paging" pageSize="5" pagingPosition="both"> -->
+<!-- 		    <template name="model"> -->
+<!-- 		    	<listitem onClick=""> -->
+<!-- 			        <listcell> -->
+<!-- 			        	<div style="padding-bottom:10px;"> -->
+<!-- 							<separator bar="true"></separator> -->
+<!-- 							<div zclass="block"><label value="Codigo : " zclass="lbl_telefoon"/><label value="@bind(each.idsolucionado)"/></div> -->
+<!-- 							<div zclass="block"><label value="Reclamo : " zclass="lbl_telefoon"/><label value="@bind(each.idreclamo)"/></div> -->
+<!-- 							<div zclass="block"><label value="Nombres y Apellidos : " zclass="lbl_telefoon"/><div><label value="@bind(each.razonsocial)"/><label value="@bind(each.nombres)"/><space/><label value="@bind(each.apellidos)"/></div></div> -->
+<!-- 							<div zclass="block"><label value="Fecha : " zclass="lbl_telefoon"/><label value="@bind(each.fecha)"/></div> -->
+<!-- 							<div zclass="block"><label value="Tipo : " zclass="lbl_telefoon"/><label value="@bind(each.tipo)"/></div> -->
+<!-- 							<div zclass="block"><label value="Solucion : " zclass="lbl_telefoon"/><label value="@bind(each.solucion)"/></div> -->
+<!-- 						</div> -->
+<!-- 			        </listcell> -->
+<!-- 			    </listitem> -->
+<!-- 		    </template> -->
+<!-- 		</listbox> -->
+	</div>
+</div>
+</zk>

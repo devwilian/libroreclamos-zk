@@ -1,0 +1,101 @@
+.div_general_crear_Estado{
+	width: 100%;
+}
+.z-window-content {
+    padding: 0px;
+    background: #fff;
+    color: rgba(0,0,0,0.9);
+    overflow: hidden;
+    zoom: 1;
+}
+.cabecera_crear{
+	background: #4B692E;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+.div_content{
+	background: transparent;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+.lbl_cerrar{
+	float: right;
+	padding-right: 5px;
+	font-family: 'Aldrich';
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
+	color: #000077;
+}
+.div_cerrar:hover{
+	border: 1px solid #808080;
+	border-radius: 2px;
+	background: #32451f;
+}
+.div_cab{
+	width: 40%;
+}
+.div_close{
+	width: 20%;
+}
+.textarea{
+	font-family: 'Bahnschrift';
+	font-size: 18px;
+	border: 2px solid #EEEEEE;
+	width: 100%;
+	border-radius: 5px;
+}
+.z-comboitem-text{
+	font-family: 'Bahnschrift';
+	text-transform: uppercase;
+}
+.z-combobox-input{
+	font-family: 'Bahnschrift';
+}
+.div_botones{
+	padding-top: 10px;
+}
+.img_icon{
+	height:22px;
+	cursor: pointer;
+}
+.img_icon:hover{
+	height: 27px;
+}
+.btn_solucionar{
+	font-family: 'Bahnschrift';
+	font-size:20px;
+	border-bottom: 4px solid #4B692E;
+	color:#4B692E;
+	cursor: pointer;
+}
+.btn_solucionar:active{
+	border-top: 2px solid #4B692E;
+	border-bottom: 4px solid #4B692E;
+	border-left: 2px solid #4B692E;
+	border-right: 2px solid #4B692E;
+	border-radius: 3px;
+	padding: 2px;
+}
+.div_otromotivo{
+	width: 50%;
+}
+
+@media (max-width:900px){
+	.div_otromotivo{
+		width: 100%;
+	}
+	.div_botones{
+		display: flex;
+	}
+	.div_cab{
+		width: 100%
+	}
+	.cabecera_crear{
+		display: block;
+		
+	}
+}

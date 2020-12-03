@@ -1,0 +1,90 @@
+<?page title="Libro Reclamaciones" contentType="text/html;charset=UTF-8"?>
+<?link  href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet"?>
+<zk>
+<style src="css/index.css"/>
+<style src="css/generales.css"/>
+	<div viewModel="@id('vmInicio') @init('com.libro.viewModel.inicioVM')">
+		<div zclass="cab_cabecerageneral" align="right" height="121px">
+			<div zclass="div_cabecera_info" height="115px">
+				<div>
+					<image src="img/libro.png" zclass="img_cabecera"/>
+				</div>
+				<div zclass="div_info_cabecera">
+					<div><label value="LIBRO DE RECLAMACIONES" zclass="lbl_titulo2"/></div>
+					<div><label value="Telefono: " zclass="lbl_normal5"/><label value="@bind(vmInicio.empresa.telefono1)" zclass="lbl_normal5"/><space></space><label value="@bind(vmInicio.empresa.telefono2)" zclass="lbl_normal5"/></div>
+					<div><label value="Email: " zclass="lbl_normal5"/><label value="@bind(vmInicio.empresa.correo)" zclass="lbl_normal5"/></div>
+				</div>
+			</div>
+		</div>
+		<!-- ESTILO TELEFONO -->
+		<div zclass="cab_cabecerageneral_phone" align="center" height="121px">
+			<div zclass="div_cabecera_info" height="115px">
+				<div>
+					<image src="img/libro.png" zclass="img_cabecera"/>
+				</div>
+				<div zclass="div_info_cabecera">
+					<div><label value="LIBRO DE RECLAMACIONES" zclass="lbl_titulo2"/></div>
+					<div><label value="Telefono: " zclass="lbl_normal5"/><label value="@bind(vmInicio.empresa.telefono1)" zclass="lbl_normal5"/><space></space><label value="@bind(vmInicio.empresa.telefono2)" zclass="lbl_normal5"/></div>
+					<div><label value="Email: " zclass="lbl_normal5"/><label value="@bind(vmInicio.empresa.correo)" zclass="lbl_normal5"/></div>
+				</div>
+			</div>
+		</div>
+		<!-- TERMINA TELEFONO -->
+		<div zclass="degrade_der" height="10px">
+			
+		</div>
+		<div zclass="div_seguimiento" onClick="@command('iraSeguimiento')">
+			<label value="SEGUIMIENTO DE RECLAMO" zclass="lbl_titulo3 btn_seguimiento"/>
+		</div>
+		<div zclass="div_body_flex">
+			<!-- image -->
+			<div zclass="div_img" width="30%">
+<!-- 				<image src="img/bus.png" height="200px"/> -->
+			</div>
+			<!-- contenido -->
+			<div zclass="div_contenido">
+				<div zclass="div_border div_content">
+					<div zclass="div_body_flex div_item_align flex_phone">
+						<div align="center"> <image src="img/icon/icon1.png" height="40px"/> </div>
+						<div style="padding:8px;" align="justify"> 
+							<label zclass="lbl_normal1" value=" Estimado Cliente el Libro de Reclamaciones Virtual sirve para
+ darnos a conocer insatisfacción o disconformidad (quejas o 
+ reclamos) con respecto de algún producto ó servicio brindado por nuestra 
+ empresa"/> </div>
+					</div>
+					<div zclass="div_body_flex div_item_align flex_phone">
+						<div align="center"> <image src="img/icon/icon2.png" height="40px"/> </div>
+						<div style="padding:8px;" align="justify"> 
+							<label zclass="lbl_normal1 justify" value="En caso de realizar alguna consulta deberá escribirnos al correo "/><label value="@bind(vmInicio.empresa.correo)" zclass="lbl_normal1 justify"></label></div>
+					</div>
+				</div>
+				<div zclass="div_body_">
+					<div zclass="div_btn_izq" align="center">
+						<div id="btninicio" zclass="div_btn_aux" onClick="@global-command('changeInterface',id=self.id)">
+							<image src="img/icon/home.png" height="30px"/>
+							<label value="INICIO" zclass="lbl_titulo2 visiblephone"/>
+						</div>
+					</div>
+					<div zclass="div_btn_izq" align="center">
+						<div id="btncontinuar" zclass="div_btn_aux" onClick="@global-command('changeInterface',id=self.id)">
+							<label value="CONTINUAR" zclass="lbl_titulo2 visiblephone"/>
+							<image src="img/icon/continue.png" height="30px"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div zclass="footer_general blanco" onClick="@command('iraSeguimiento')" align="right">
+			<div>
+				<label value="SEGUIMIENTO DE RECLAMO" zclass="lbl_titulo3 btn_seguimiento blanco"/>
+			</div>
+			<div align="center">
+				<label value="" style="color:white;"></label>
+			</div>
+		</div>
+		<window zclass="win_model" mode="modal" visible="@bind(vmInicio.seguimiento)">
+			<include src="seguimiento.zul"/>
+		</window>
+	</div>
+</zk>

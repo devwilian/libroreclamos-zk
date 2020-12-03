@@ -1,0 +1,83 @@
+<?page title="Lista Reclamos" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"/>
+<style src="css/listareclamos.css"/>
+<window border="normal">
+<div id="listaproceso" viewModel="@id('vmLista') @init('com.libro.viewModel.listaprocesoVM')" width="100%" >
+	<div visible="@bind(!vmLista.verEstado)">
+		<div sclass="div_btn_ordenar" align="justify">
+			<div align="right" zclass="div_btn_ flex telefono" onClick="@command('ordenar',valor=ordenarfecha.value)">
+				<div zclass="flex align_center btn_ordenar">
+					<label value="Ordenar" zclass="lbl_normal1_"/>
+					<space></space>
+					<menubar sclass="cabezera_menubar">
+						<menu>
+							<menupopup sclass="cabecera_menubar_menupopup">
+								<menuitem iconSclass="icon" label="Nombre" value="nombre" onClick="@command('ordenar',valor=self.value)"/>
+								<menuitem id="ordenarfecha" iconSclass="icon" label="Fecha" value="fecha" onClick="@command('ordenar',valor=self.value)"/>
+							</menupopup>
+						</menu>
+					</menubar>
+				</div>
+				<div align="right">
+					<image src="img/icon/refresh.png" height="30px" zclass="img_refresh"></image>
+				</div>
+			</div>
+		</div>
+		<div zclass="div_lista vistagrande">
+			<listbox model="@bind(vmLista.listadeReclamos)" width="100%" mold="paging" pageSize="10">
+			    <listhead>
+			        <listheader width="130px" style="text-align: center;"><label value="Codigo" zclass="lbl_header"></label></listheader>
+			        <listheader width="350px"><label value="Apellidos y Nombres" zclass="lbl_header"></label></listheader>
+			        <listheader width="250px"><label value="Correo" zclass="lbl_header"></label></listheader>
+			        <listheader width="100px"><label value="Fecha" zclass="lbl_header"></label></listheader>
+			        <listheader width="90px"><label value="Tipo" zclass="lbl_header"></label></listheader>
+			        <listheader width="140px" style="text-align: center;"><label value="Accion" zclass="lbl_header"></label></listheader>
+			    </listhead>
+			    <template name="model">
+			    	<listitem onClick="@command('verEstadoReclamo',idreclamo=each.codreclamo) @global-command('pasarCodigoReclamo',id=each.codreclamo,valor='listaproceso')">
+				        <listcell style="text-align: center;"><label value="@bind(each.codreclamo)" /></listcell>
+				        <listcell><label value="@bind(each.razonsocial)"/><label value="@bind(each.nombres)" /><space></space><label value="@bind(each.apellidos)" /></listcell>
+				        <listcell><label value="@bind(each.correo)" zclass="correo"/></listcell>
+				        <listcell><label value="@bind(each.fecha)" /></listcell>
+				        <listcell><label value="@bind(each.tipoproblema)" /></listcell>
+				        <listcell style="text-align: center;">
+				        <label value="CREAR ESTADO" zclass="button_crear_estado" 
+				        onClick="@command('verCrearEstado') @global-command('cargarIdreclamo',idreclamo=each.codreclamo,nombres=each.nombres,apellidos=each.apellidos,correo=each.correo)"/>
+				        </listcell>
+				    </listitem>
+			    </template> 
+			</listbox>
+		</div>
+		<div zclass="vistatelefono">
+			<listbox model="@bind(vmLista.listadeReclamos)" width="100%" mold="paging" pageSize="5" pagingPosition="both">
+			    <template name="model">
+			    	<listitem onClick="@command('verEstadoReclamo',idreclamo=each.codreclamo) @global-command('pasarCodigoReclamo',id=each.codreclamo,valor='listaproceso')">
+				        <listcell>
+				        	<div style="padding-bottom:10px;">
+                                <separator bar="true"></separator>
+                                <div zclass="block"><label value="Codigo : " zclass="lbl_telefoon"/><label value="@bind(each.codreclamo)"/></div>
+                                <div zclass="block"><label value="Nombres y Apellidos : " zclass="lbl_telefoon"/><div><label value="@bind(each.razonsocial)"/><label value="@bind(each.nombres)"/><space/><label value="@bind(each.apellidos)"/></div></div>
+                                <div zclass="block"><label value="Correo : " zclass="lbl_telefoon"/><label value="@bind(each.correo)"/></div>
+                                <div zclass="block"><label value="Fecha : " zclass="lbl_telefoon"/><label value="@bind(each.fechareclamo)"/></div>
+                                <div zclass="block"><label value="Tipo : " zclass="lbl_telefoon"/><label value="@bind(each.tipoproblema)"/></div>
+                                <div align="center">
+<!--                                     <label value="VER" zclass="button_crear_estado"  onClick="@command('verEstadoReclamo',idreclamo=each.codreclamo) @global-command('pasarCodigoReclamo',id=each.codreclamo,valor='listareclamos')"/> -->
+                                    <label value="CREAR ESTADO" zclass="button_crear_estado"  onClick="@command('verCrearEstado') @global-command('cargarIdreclamo',idreclamo=each.codreclamo,nombres=each.nombres,apellidos=each.apellidos,correo=each.correo)"/>
+                                </div>
+                            </div>
+				        </listcell>
+				    </listitem>
+			    </template> 
+			</listbox>
+		</div>
+	</div>
+	<div visible="@bind(vmLista.verEstado)" width="100%">
+		<include src="reclamo.zul"/>
+	</div>
+	<window width="80%" sclass="win_content_reserva_exitosa" mode="modal" visible="@bind(vmLista.crearEstado)">
+		<include src="crearEstado.zul"/>
+	</window>
+</div>
+</window>
+</zk>

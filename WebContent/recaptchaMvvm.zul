@@ -1,0 +1,27 @@
+<zk xmlns:ca="client/attribute" >
+    <script type="text/javascript" src='https://www.google.com/recaptcha/api.js' defer="true" />
+                <script><![CDATA[ 
+        function afterValidate(response){
+            zkbind.$('$recaptcha').command('verify', {"response":response});
+        } 
+    ]]>
+    </script>
+    <grid id="form"
+    viewModel="@id('vm')@init('com.libro.viewModel.vm')" width="400px">
+        <columns>
+            <column>Form</column>
+        </columns>
+        <rows>
+            <row>
+                other fields
+            </row>
+            <row>
+                <button id="recaptcha" sclass="g-recaptcha"
+                    ca:data-sitekey="6LdwOVkUAAAAAH7DS_D_w5nAU1JyulE-kYz6rGrA"
+                    ca:data-callback='afterValidate'>
+                    Submit
+                </button>
+            </row>
+        </rows>
+    </grid>   
+</zk>

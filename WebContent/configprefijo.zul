@@ -1,0 +1,12 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<div viewModel="@id('vmPre') @init('com.libro.viewModel.configprefijoVM')" align="center">
+	<space></space>
+	<label value="PREFIJO DE LA BASE DE DATOS "/>
+	<textbox id="txtprefijo" width="200px" value="@bind(vmPre.prefijo)" maxlength="4" zclass="textboxprimeravez" onOK="@command('insertarPrefijo',valor=self.value,comp=self)"/>
+	<label value="Maximo 4 Caracteres" zclass="lbl_normal6"/>
+	<div align="center" width="100%" style="padding-top: 5px;">
+		<button label="ACTUALIZAR" onClick="@command('insertarPrefijo',valor=txtprefijo.value,comp=self)"></button>
+	</div>
+</div>
+</zk>

@@ -1,0 +1,116 @@
+<?page title="Reclamo" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/reclamo.css"/>
+<style src="css/imagenesreclamos.css"></style>
+<div viewModel="@id('vmVer') @init('com.libro.viewModel.reclamoVM')">
+	<div zclass="lbl_reclamo" width="100%">
+		<label value="Reclamo"/>
+	</div>
+	<div align="center">
+		<label value="REGISTRO DE RECLAMO" zclass="titulo"/>
+	</div>
+	<div align="center">
+		<label value="HOJA DE RECLAMACIONES COD. " zclass="lbl_sub"/><label id="idreclamo" value="@bind(vmVer.idreclamo)" zclass="lbl_sub"/>
+	</div>
+	<space></space>
+	<div>
+		<label value="IDENTIFICACION DEL USUARIO"></label>
+		<div zclass="div_content_">
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Tipo de Documento" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.tipoDocumento.descripcion)"/></div>
+			</div>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Nro de Documento" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.solicitante.nrodoc)"/></div>
+			</div>
+			<div zclass="stilofono" visible="@bind(!vmVer.razonsocial)">
+				<div zclass="div_info"><label value="Nombres y Apellidos" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.solicitante.nombres)"/><space></space><label value="@bind(vmVer.solicitante.apellidos)"/></div>
+			</div>
+			<div zclass="stilofono" visible="@bind(vmVer.razonsocial)">
+				<div zclass="div_info"><label value="Razon Social" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.solicitante.razonsocial)" style="text-transform: uppercase;"/></div>
+			</div>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Nro Telefono" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.solicitante.nrotelefono)"/></div>
+			</div>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Email" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.solicitante.correo)"/></div>
+			</div>
+		</div>
+	</div>
+	<space></space>
+	<div>
+		<label value="IDENTIFICACION DE LA ATENCION BRINDADA"></label>
+		<div zclass="div_content_">
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Lugar de Ocurrencia" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.sedeOcurrencia.nombre)"/> </div>
+			</div>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Area de Ocurrencia" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.areaOcurrencia.nombre)"/> </div>
+			</div>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Fecha de Insidencia" sclass="lbl_color"/></div><div zclass="div_info_"><label value="@bind(vmVer.reclamo.fecha)"/> </div>
+			</div>
+			<separator bar="false"></separator>
+			<div zclass="stilofono">
+				<div zclass="div_info"><label value="Motivo" sclass="lbl_color"/></div>
+				<div zclass="div_info_">
+					<listbox model="@bind(vmVer.listaMotivo)">
+					    <template name="model">
+					    	<listitem>
+						        <listcell><label value="@bind(each.descripcion)"/></listcell>
+						    </listitem>
+					    </template>
+					</listbox>
+				</div>
+			</div>
+		</div>
+	</div>
+	<space></space>
+	<div>
+		<label value="DETALLE DEL RECLAMO"></label>
+		<div zclass="div_content_">
+			<div zclass="div_info"><label value="Detalles del Reclamo" sclass="lbl_color"/></div>
+			<div zclass="div_info"><label value="@bind(vmVer.reclamo.detallereclamo)"/></div>
+			<div zclass="div_info" visible="@bind(vmVer.solicitud)"><label value="Solicitud de Reclamo" sclass="lbl_color"/></div>
+			<div zclass="div_info" visible="@bind(vmVer.solicitud)"><label value="@bind(vmVer.reclamo.solicitudreclamo)"/></div>
+		</div>
+	</div>
+	<space></space>
+	<div>
+<!-- 		<label value="DOCUMENTOS MULTIMEDIA" visible="@bind(vmVer.reclamo.docmultimedia)"></label> -->
+		<div zclass="div_content_">
+			<div visible="@bind(vmVer.reclamo.docmultimedia)">
+				
+				<div>
+					<label value="IMAGENES ENVIADOS POR EL RECLAMANTE"></label>
+					<space></space>
+					<button label="Ver imagenes Recibidos" 
+										onClick="@command('invocaImagenesReclamo') @global-command('muestraImagenesSubidasPaquete',cPaquete=vmVer.reclamo)"/>
+				</div>
+				<space></space>
+				<div visible="@bind(vmVer.verImagenesSubidas)">
+					<include src="imagenesPaquetes.zul"></include>
+				</div>
+			</div>
+		</div>
+	</div>
+	<space></space>
+	<div align="right" sclass="div_botones">
+		<button visible="@bind(vmVer.verMarcarProceso)" label="Marcar en Proceso" onClick="@command('marcarComoProceso',comp=self)"/>
+		<space></space>
+		<button label="Solucionar" onClick="@command('verCrearEstado',comp=self) 
+				@global-command('SolucionarReclamo',
+				reclamo=vmVer.reclamo,
+				solicitante=vmVer.solicitante,
+				sedeocurrencia=vmVer.sedeOcurrencia,
+				areaocurrencia=vmVer.areaOcurrencia,
+				tipodocumento=vmVer.tipoDocumento,
+				tipoproblema=vmVer.tipoProblema,
+				listamotivo=vmVer.listaMotivo)"/>
+		<space></space>
+		<button label="Volver" onClick="@global-command('cerrarVerEstado',comp=self)"/>
+	</div>
+	<window sclass="win_content_reserva_exitosa" mode="modal" visible="@bind(vmVer.crearEstado)">
+		<include src="crearEstado.zul"/>
+	</window>
+</div>
+</zk>

@@ -1,0 +1,158 @@
+<?page title="Panel Admin" contentType="text/html;charset=UTF-8"?>
+<?page viewport="width=device-width, initial-scale=1.0,  user-scalable=no"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/favicon.ico"?>
+<zk>
+	<style src="fonts/zk.css"/>
+	<style src="css/general.css"/>
+	<style src="css/paneladmin.css"/>
+	<timer id="timerKeepAliveSession" repeats="true" delay="1800000" onTimer=""/>
+	<div id="vistaPanelAdmin" viewModel="@id('vmAdmin') @init('com.libro.viewModel.panelAdminVM')"
+		 zclass="contenedor_admin" visible="@bind(vmAdmin.cargarAdmin)">
+		<div sclass="contendor_cabezera" width="100%" height="110px">
+			<div zclass="div_cabecera_info">
+				<label value="PANEL DE ADMINISTRACIÓN" zclass="lbl_titulo1_"/>
+			</div>
+			<div sclass="contenedor_desplegable_responsive">
+				<button width="40px" height="30px" image="ICO/menu6.png"
+					zclass="boton_desplegable" onClick="div_config_perfil.setVisible(div_config_perfil.isVisible()?false:true)">
+				</button>
+			</div>
+			<div sclass="cabezera flex_center">
+				<label value="Bienvenido" zclass="lbl_normal1_ white"/>
+				<space width="50px"></space>
+				<label value="@bind(vmAdmin.oUsuario.apellidos)" zclass="lbl_normal1_ strong white" style="text-transform: uppercase;"/>
+				<space></space>
+				<label value="@bind(vmAdmin.oUsuario.cNombres)" zclass="lbl_normal1_ strong white" style="text-transform: uppercase;"/>
+				<space></space>
+				<image sclass="style_foto_admin" src="@load(vmAdmin.oUsuario.imgUsuario)" onClick="@command('verUsuario')"/>
+				<space></space>
+				<menubar sclass="cabezera_menubar">
+					<menu>
+						<menupopup sclass="cabecera_menubar_menupopup">
+							<menuitem visible="@bind(vmAdmin.oAcceso.accesoregusuario)" id="itemCrearUsuario" iconSclass="icon-user" label="Crear Usuario" onClick="@command('Cambio',cambioInterfaz=self.id)"/>
+							<menuitem iconSclass="icon-switch" label="Cerrar Sesion" onClick="@command('cerrarSession')"/>
+						</menupopup>
+					</menu>
+				</menubar>
+			</div>
+		</div>
+		<div sclass="contenedor_cuerpo" height="100vh" width="100%">
+			<div zclass="estilo_div_tree">
+				<div height="auto" zclass="encima_tree" align="center">
+					<image src="img/logo_.png" width="60%"/>
+					<div zclass="info_menu" style="padding-top: 20px;">
+						<image src="img/icon/menu.png" height="30px"/>
+						<label value="MENU" zclass="lbl_normal1_ white" style="padding-left: 10px;"/>
+					</div>
+					<space></space>
+				</div>
+				<div height="50vh" zclass="div_tree">
+					<div zclass="div_mantenimiento">
+						<!-- ==RECIBIDOS== -->
+						<div visible="@bind(vmAdmin.oAcceso.accesorecibidos)" id="itemRecibidos" zclass="div_mantenimiento_items" onClick="@command('Cambio',cambioInterfaz=self.id) @global-command('cerrarVerEstado')">
+							<div>
+								<image src="img/icon/recibido.png" height="25px"/>
+								<label value="RECIBIDOS" sclass="lbls_mantenimientos"/>
+							</div>
+						</div>
+						<!-- ==PROCESO== -->
+						<div visible="@bind(vmAdmin.oAcceso.accesoprocesos)" id="itemProcesos" zclass="div_mantenimiento_items" onClick="@command('Cambio',cambioInterfaz=self.id) @global-command('cerrarVerEstado')">
+							<div>
+								<image src="img/icon/proceso.png" height="25px"/>
+								<label value="EN PROCESO" sclass="lbls_mantenimientos"/>
+							</div>
+						</div>
+						<!-- ==REPORTES== -->
+						<div visible="@bind(vmAdmin.oAcceso.accesoreportes)" id="itemReportes" zclass="div_mantenimiento_items" onClick="@command('Cambio',cambioInterfaz=self.id) @global-command('cerrar')">
+							<div>
+								<image src="img/icon/reporte.png" height="25px"/>
+								<label value="REPORTES" sclass="lbls_mantenimientos"/>
+							</div>
+						</div>
+						<!-- ==USUARIOS== -->
+						<div visible="@bind(vmAdmin.oAcceso.accesolistausuario)" id="itemListaUsuario" zclass="div_mantenimiento_items" onClick="@command('Cambio',cambioInterfaz=self.id) @global-command('cerrar')">
+							<div>
+								<image src="img/icon/usuario.png" height="25px"/>
+								<label value="USUARIOS" sclass="lbls_mantenimientos"/>
+							</div>
+						</div>
+						<!-- ==CONFIGURACION== -->
+						<div visible="@bind(vmAdmin.oAcceso.accesoconfiguracion)" id="itemConfiguracion" zclass="div_mantenimiento_items" onClick="@command('Cambio',cambioInterfaz=self.id) @global-command('cerrar')">
+							<div>
+								<image src="img/icon/settings.png" height="25px"/>
+								<label value="CONFIGURACION" sclass="lbls_mantenimientos"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div zclass="contenedor_botones" height="auto">
+			    <div id="div_config_perfil" width="100%" visible="false" zclass="div_perfil_responsive" align="center">
+			    	<image sclass="style_foto_admin" src="@load(vmAdmin.oUsuario.imgUsuario)" onClick="@command('verUsuario')"/>
+					<div zclass="flex">
+						<label value="@bind(vmAdmin.oUsuario.apellidos)" zclass="strong white tama20" style="text-transform: uppercase;"/>
+						<space></space>
+						<label value="@bind(vmAdmin.oUsuario.cNombres)" zclass="strong white tama20" style="text-transform: uppercase;"/>
+					</div>
+					<div align="center">
+						<menubar sclass="cabezera_menubar" width="40px">
+							<menu>
+								<menupopup sclass="cabecera_menubar_menupopup">
+									<menuitem visible="@bind(vmAdmin.oAcceso.accesoregusuario)" id="itemCrearUsuarioPhone" iconSclass="icon-user" label="Crear Usuario" onClick="@command('Cambio',cambioInterfaz=self.id)"/>
+									<menuitem iconSclass="icon-switch" label="Cerrar Sesion" onClick="@command('cerrarSession')"/>
+								</menupopup>
+							</menu>
+						</menubar>
+					</div>
+			    </div>
+				<div  width="100%" height="200px" sclass="estilo_tabbox">
+					<div sclass="contenedor_botones" width="100%">
+						<div  width="100%" height="auto">
+							<div  visible="true" width="100%">
+								<div width="100%">
+								   	<button width="100%" iconSclass="icon-package estilos-iconos" visible="@bind(vmAdmin.visibleRecibidos)" zclass="btn_opciones_config lbl_normal1_" label="RECIBIDOS"/>
+									<button width="100%" iconSclass="icon-package estilos-iconos" visible="@bind(vmAdmin.visibleProceso)" zclass="btn_opciones_config lbl_normal1_" label="EN PROCESOS"/>
+									<button width="100%" iconSclass="icon-package estilos-iconos" visible="@bind(vmAdmin.visibleReporte)" zclass="btn_opciones_config lbl_normal1_" label="REPORTES"/>
+									<button width="100%" iconSclass="icon_create estilo-iconos" visible="@bind(vmAdmin.visiblecrearUsuario)" zclass="btn_opciones_config lbl_normal1_" label="CREAR USUARIO"></button>
+									<button width="100%" iconSclass="icon_create estilo-iconos" visible="@bind(vmAdmin.visibleConfiguracion)" zclass="btn_opciones_config lbl_normal1_" label="CONFIGURACIONES EXTRAS"></button>
+									<button width="100%" iconSclass="icon_create estilo-iconos" visible="@bind(vmAdmin.visiblelistausuario)" zclass="btn_opciones_config lbl_normal1_" label="LISTA USUARIOS"></button>
+								</div>
+								<div style="padding-top:5px;">
+									<div visible="@bind(vmAdmin.visibleRecibidos)">
+									   <include src="listareclamos.zul"/>
+									</div>
+									<div visible="@bind(vmAdmin.visibleProceso)">
+									   <include src="listaproceso.zul"/>
+									</div>
+									<div visible="@bind(vmAdmin.visibleReporte)">
+									   <include src="reporte.zul"/>
+									</div>
+									<div visible="@bind(vmAdmin.visiblecrearUsuario)">
+									   <include src="crearUsuario.zul"/>
+									</div>
+									<div visible="@bind(vmAdmin.visibleConfiguracion)">
+									   <include src="configuraciones.zul"/>
+									</div>
+									<div visible="@bind(vmAdmin.visiblelistausuario)">
+										<include src="listausuarios.zul"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<window zclass="div_cambiarcuenta_update" mode="modal" visible="@bind(vmAdmin.elegirfotos)">
+			<include src="cambiarCuenta.zul"/>
+		</window>
+		<window zclass="div_primera_vez" mode="modal" visible="@bind(vmAdmin.visibleprimeravez)">
+			<label value="PREFIJO DE LA BASE DE DATOS "/>
+			<textbox id="txtprefijo" width="200px" maxlength="4" zclass="textboxprimeravez" onOK="@command('insertarPrefijo',valor=self.value,comp=vistaPanelAdmin)"/>
+			<label value="Maximo 4 Caracteres" zclass="lbl_normal6"/>
+			<div align="center" width="100%" style="padding-top: 5px;">
+				<button label="GUARDAR" onClick="@command('insertarPrefijo',valor=txtprefijo.value,comp=self)"></button>
+			</div>
+		</window>
+	</div>
+</zk>

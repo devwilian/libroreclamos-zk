@@ -1,0 +1,68 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"></style>
+<style src="fonts/zk.css"></style>
+<style src="css/configcorreo.css"></style>
+<div viewModel="@id('vmCorreo') @init('com.libro.viewModel.configcorreoVM')" zclass="div_correo_general">
+	<space></space>
+	<div visible="@bind(!vmCorreo.ver)">
+		<grid>
+			<rows>
+				<row>
+					<label value="SMTP HOST  "></label>
+					<label value="@bind(vmCorreo.correo.cSMTPHost)"></label>
+				</row>
+				<row>
+					<label value="SMTP PORT  "></label>
+					<label value="@bind(vmCorreo.correo.nSMTPPort)"></label>
+				</row>
+				<row>
+					<label value="CIFRADO  "></label>
+					<label value="@bind(vmCorreo.correo.cifrado)"></label>
+				</row>
+				<row>
+					<label value="SMTP USERNAME  "></label>
+					<label value="@bind(vmCorreo.correo.cSMTPUserName)"></label>
+				</row>
+			</rows>
+		</grid>
+		<div align="center">
+			<button label="Editar" onClick="@command('editar')"></button>
+		</div>
+	</div>
+	<div visible="@bind(vmCorreo.ver)">
+		<grid>
+			<rows>
+				<row>
+					<label value="SMTP HOST  "></label>
+					<textbox onChange="@command('changeHost',valor=self.value)" placeholder="smtp.gmail.com" value="@bind(vmCorreo.correo.cSMTPHost)" zclass="textbox" width="300px"></textbox>
+				</row>
+				<row>
+					<label value="SMTP PORT  "></label>
+					<textbox onChange="@command('changePort',valor=self.value)" placeholder="465" value="@bind(vmCorreo.correo.nSMTPPort)" zclass="textbox" width="300px"></textbox>
+				</row>
+				<row>
+					<label value="CIFRADO  "></label>
+					<radiogroup onCheck="@command('changeCifrado',valor=self.selectedItem.value)">
+						<radio label="SSL" value="ssl" checked="@bind(vmCorreo.correo.bSSL)"/>
+						<space></space>
+						<radio label="TLS" value="tls" checked="@bind(vmCorreo.correo.bTLS)"/>
+					</radiogroup>
+				</row>
+				<row>
+					<label value="SMTP USERNAME  "></label>
+					<textbox onChange="@command('changeUsername',valor=self.value)" placeholder="email@tudominio.com" value="@bind(vmCorreo.correo.cSMTPUserName)" zclass="textbox" width="300px"></textbox>
+				</row>
+				<row>
+					<label value="SMTP PASSWORD  "></label>
+					<textbox onChange="@command('changePassword',valor=self.value)" placeholder="Contrasenia" value="@bind(vmCorreo.correo.cSMTPPassword)" zclass="textbox" width="300px"></textbox>
+				</row>
+				<row align="center">
+					<button label="CANCELAR" onClick="@command('cancelar')"/>
+					<button label="ACTUALIZAR" onClick="@command('actualizar',comp=self)"/>
+				</row>
+			</rows>
+		</grid>
+	</div>
+</div>
+</zk>

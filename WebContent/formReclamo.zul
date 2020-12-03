@@ -1,0 +1,353 @@
+<?page title="Formulario de Reclamo" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/favicon.ico"?>
+<zk xmlns:ca="client/attribute">
+<style src="fonts/zk.css"></style>
+<style src="css/general.css"></style>
+<style src="css/formulario.css"></style>
+<style src="https://fonts.googleapis.com/css?family=Titillium Web"></style>
+<script type="text/javascript" src='https://www.google.com/recaptcha/api.js' defer="true" />
+			<script><![CDATA[ 
+	function afterValidate(response){
+		zkbind.$('$recaptcha').command('verify', {"response":response});
+	} 
+]]>
+</script>
+<div viewModel="@id('vmForm') @init('com.libro.viewModel.formReclamoVM')" zclass="div_general_form" visible="@bind(vmForm.verForm)">
+	<div visible="@bind(!vmForm.verFormulario)">
+		<div zclass="cab_cabecerageneral" align="right" height="121px">
+			<div zclass="div_cabecera_info" height="115px">
+				<div>
+					<image src="img/libro.png" height="80px"/>
+				</div>
+				<div zclass="div_info_cabecera">
+				
+					<div><label value="LIBRO DE RECLAMACIONES" zclass="lbl_titulo2"/></div>
+					<div><label value="Telefono:" zclass="lbl_normal5"/><label value="@bind(vmForm.empresa.telefono1)" zclass="lbl_normal5"/><space/><label value="@bind(vmForm.empresa.telefono2)" zclass="lbl_normal5"/></div>
+					<div><label value="Email:" zclass="lbl_normal5"/><label value="@bind(vmForm.empresa.correo)" zclass="lbl_normal5"/></div>
+				</div>
+			</div>
+		</div>
+		<!-- ESTILOS TELEFONO -->
+		<div zclass="cab_cabecerageneral_phone" align="center" height="121px">
+			<div zclass="" height="115px">
+				<div>
+					<image src="img/libro.png" height="40px"/>
+				</div>
+				<div zclass="div_info_cabecera">
+					<div><label value="LIBRO DE RECLAMACIONES VIRTUAL" zclass="lbl_titulo2"/></div>
+					<div><label value="Telefono: 931007445 | 084-252959" zclass="lbl_normal5"/></div>
+					<div><label value="Email: info@consettur.com" zclass="lbl_normal5"/></div>
+				</div>
+			</div>
+		</div>
+		<!-- ESTILOS TELEFONO -->
+		<div zclass="degrade_der" height="15px"></div>
+		<div align="center">
+			<div zclass="div_frm_registro">
+				<div>
+					<div align="center" zclass="div_frm_titulo">
+						<label value="FORMULARIO DE REGISTRO DE RECLAMO" zclass="lbl_titulo1" />
+					</div>
+					<!-- INDENTIFICACION DEL USUARIO -->
+					<div zclass="div_identificaion_usuario div_body">
+						<div zclass="div_identificacion_title_sub">
+							<label value="IDENTIFICACIÓN DEL USUARIO" zclass="lbl_titulo4"></label>
+						</div>
+						<div>
+							<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Tipo de Documento" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left">
+										<combobox onChange="@command('changeTipoDocumento',id=self.selectedItem.value,descripcion=self.selectedItem.label,com=self)"
+										model="@load(vmForm.listatipoDocumento)" placeholder="Tipo Documento" readonly="true">
+											<template name="model">
+												<comboitem label="@load(each.descripcion)" value="@load(each.idtipodocumento)"/>
+											</template>
+										</combobox>
+									</div>
+								</div>
+								<div zclass="div_body_item div_mid" visible="@bind(!vmForm.activarTipoRuc)">
+									<div zclass="div_item_" align="left"> <label value="Nro de DNI/PAS*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="NRO DOCUMENTO" zclass="textboxuppercase" onChange="@command('validarNroDocs',valor=self.value,com=self)"/></div>
+								</div>
+								<div zclass="div_body_item div_mid" visible="@bind(vmForm.activarTipoRuc)">
+									<div zclass="div_item_" align="left"> <label value="Nro de RUC*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="NRO RUC" zclass="textboxuppercase" onChange="@command('validarNroDocs',valor=self.value,com=self)" maxlength="11"/></div>
+								</div>
+							</div>
+							<div visible="@bind(vmForm.activarTipoRuc)">
+								<div>
+									<div zclass="div_body_item" >
+										<div zclass="div_razon" align="left"> <label value="Razon social*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_razon_" align="left"> <textbox placeholder="RAZON SOCIAL" zclass="textboxuppercase" onChange="@command('changeRazonSocial',valor=self.value,comp=self)"/></div>
+									</div>
+								</div>
+								<div zclass="div_body_item">
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
+									</div>
+									<div zclass="div_body_item div_mid" visible="false">
+										<div zclass="div_item_" align="left"> <label value="Nombre (Opcional)" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="APELLIDOS Y NOMBRES" zclass="textboxuppercase" onChange="@command('nombreOpcional',valor=self.value,comp=self)"/></div>
+									</div>
+								</div>
+							</div>
+							<div visible="@bind(!vmForm.activarTipoRuc)">
+								<div zclass="div_body_item">
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Apellido Paterno*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Apellido Paterno" zclass="textboxuppercase" onChange="@command('apellidosPaterno',valor=self.value,comp=self)"/></div>
+									</div>
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Apellido Materno*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Apellido Materno" zclass="textboxuppercase" onChange="@command('apellidosMaterno',valor=self.value,comp=self)"/></div>
+									</div>
+								</div>
+								<div zclass="div_body_item">
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Nombres*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Nombres" zclass="textboxuppercase" onChange="@command('nombres',valor=self.value,comp=self)"/></div>
+									</div>
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
+									</div>
+								</div>
+							</div>
+							<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('changeEmail',valor=self.value,comp=self)"/></div>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Confirmar Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('confirmEmail',valor=self.value,comp=self)"/></div>
+								</div>
+							</div>
+							<div>
+								<div zclass="div_body_item" >
+									<div zclass="div_25" align="left"> <label value="Direccion" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_75" align="left"> <textbox placeholder="Direccion:Jr. Las Gaviotas, Chorrillos Lima" zclass="textboxuppercase" onChange="@command('changeDireccion',valor=self.value,comp=self)"/></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- IDENTIFICACION DE LA ATENCION BRINDADA -->
+					<div zclass="div_identificaion_usuario div_body">
+						<div zclass="div_identificacion_title_sub">
+							<label value="IDENTIFICACION DE LA ATENCION BRINDADA" zclass="lbl_titulo4"></label>
+						</div>
+						<div>
+							<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Sede" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left">
+										<combobox onChange="@command('changeSedeOcurrencia',id=self.selectedItem.value,descripcion=self.selectedItem.label)"
+										model="@load(vmForm.listasedeOcurrencia)" placeholder="Sede Ocurrencia" readonly="true">
+											<template name="model">
+												<comboitem label="@load(each.nombre)" value="@load(each.idsedeocurrencia)"/>
+											</template>
+										</combobox>
+									</div>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Fecha de incidencia*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left">
+										<datebox format="dd-MM-yyyy" readonly="true" placeholder="Fecha Incidencia" constraint="no future" onChange="@command('changeFecha',fecha=self.value)"/>
+									</div>
+								</div>
+							</div>
+							<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Area de ocurrencia" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left">
+										<combobox onChange="@command('changeAreaOcurrencia',id=self.selectedItem.value,nombre=self.selectedItem.label)"
+										model="@load(vmForm.listaareaOcurrencia)" placeholder="Area Ocurrencia" readonly="true">
+											<template name="model">
+												<comboitem label="@load(each.nombre)" value="@load(each.idareaocurrencia)"/>
+											</template>
+										</combobox>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Motivo de queja o reclamo -->
+					<div zclass="padding3">
+						<div align="left" zclass="padding2"><label value="Motivo de Queja o Reclamo" zclass="lbl_normal1"/></div>
+						<div zclass="div_border padding2" align="left">
+							<div>
+							    <listbox model="@bind(vmForm.listamotivoReclamo)">
+				    				<template name="model">
+				    					<listitem>
+				    						<listcell>
+				    							<checkbox label="@bind(each.descripcion)" value="@bind(each.idmotivoreclamo)" onCheck="@command('agregarListaMotivo',id=self.value,valor=self.label)" zclass="lbl_normal1"/>
+				    						</listcell>
+				    					</listitem>
+				    				</template>
+				    			</listbox>
+							</div>
+							<div visible="@bind(vmForm.activarOtroMotivo)">
+								<label value="Motro motivo " zclass="lbl_normal1"/>
+								<textbox placeholder="Describa su problema" width="70%" zclass="textboxuppercase" onChange="@command('changeOtroMotivo',id=self.value,valor=self.value,comp=self)"/>
+							</div>
+						</div>
+					</div>
+					<!-- DETALLES DEL RECLAMO O QUEJA -->
+					<div>
+						<div zclass="div_identificacion_title_sub">
+							<label value="DETALLES DEL RECLAMO O QUEJA" zclass="lbl_titulo4"></label>
+						</div>
+						<div zclass="div_body" width="90%" align="left">
+							<div>
+								<label zclass="lbl_titulo3" value="NOTA"/>
+								<label zclass="lbl_normal1" value="La respuesta efectuada o a efectuar se le enviara a su correo."/>
+							</div>
+							<div zclass="div_terminos_generales">
+								<div zclass="div_detalles_ div_body_item">
+									<image src="img/icon/circle-asteris.png" height="14px" zclass="img_phone"/>
+									<div style="padding-left:5px;">
+										<label zclass="lbl_titulo3" value="RECLAMO"/>
+										<label zclass="lbl_normal1" value="Disconformidad relacionada a los servicios adquiridos."/>
+									</div>
+								</div>
+								<div zclass="div_detalles_ div_body_item">
+									<image src="img/icon/circle-asteris.png" height="14px" zclass="img_phone"/>
+									<div style="padding-left:5px;">
+										<label zclass="lbl_titulo3" value="QUEJA"/>
+										<label zclass="lbl_normal1" value="Disconformidad no relacionada a los servicios adquiridos."/>
+									</div>
+								</div>
+							</div>
+							<div align="center">
+								<radiogroup onCheck="@command('tipodeProblema',valor=self.selectedItem.value,comp=self)">
+					                <radio label="RECLAMO" value="reclamo" zclass="lbl_normal1 radio_label"/>
+					                <radio label="QUEJA" value="queja" zclass="lbl_normal1 radio_label"/>
+							    </radiogroup>
+							</div>
+							<div zclass="div_body_item div_detalle_reclamo">
+								<div width="20%" align="center">
+									<label value="DETALLE DE RECLAMO O QUEJA" zclass="lbl_normal1 visiblephone"/>
+								</div>
+								<div zclass="div_mid">
+									<div>
+										<textbox rows="2" maxlength="500" placeholder="Detalles de la queja (obligatorio)" zclass="textarea" onChange="@command('changeDescripcionReclamo',valor=self.value,comp=self)"/>
+										<label value="Maximo 500 Caracteres" zclass="lbl_normal6"></label>
+									</div>  
+								</div>
+								<div zclass="div_body_item div_25" align="center" style="align-items: flex-end;padding-left: 10px;">
+									<button label="Subir Archivo" image="img/icon/iconoadjuntar.png" 
+									onUpload="@command('uploadImagenes',reclamo=vmForm.reclamo,upload=event,comp=self)"
+									upload="true,multiple=true,maxsize=5000" />
+									<label value="Max 5MB (opcional)" zclass="lbl_normal6"/>
+								</div>
+							</div>
+							<div zclass="div_body_item div_detalle_reclamo">
+								<div width="20%" align="center">
+									<label value="PEDIDO A SU RECLAMO O QUEJA" zclass="lbl_normal1 visiblephone"/>
+								</div>
+								<div zclass="div_mid">
+									<div>
+										<textbox rows="2" placeholder="Pedido (opcional)" zclass="textarea" onChange="@command('changeSolicitudReclamo',valor=self.value,comp=self)" maxlength="500"/>  
+										<label value="Maximo 500 Caracteres" zclass="lbl_normal6"></label>
+									</div>
+								</div>
+							</div>
+							<div zclass="padding20">
+								<checkbox value="confirmar" label="Confirmo que todos los datos ingresados están correctas." zclass="lbl_normal1" onCheck="@command('confirmarVeracidad',comp=self)" checked="@bind(vmForm.checked)" style="font-weight: bold;"/>
+								<space></space>
+								<label value="Acepto los terminos y condiciones." zclass="urlterminos" onClick="@command('irTerminosyCondiciones')"></label>
+							</div>
+							<div>
+								<div zclass="div_subir_doc">
+									<div><image src="img/icon/check.png" width="20px"/></div>
+									<div zclass="padding3" align="justify"> <label value="La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito 
+	previo para interponer una denuncia ante el INDECOPI." zclass="lbl_normal1"/> </div>
+								</div>
+								<div zclass="div_subir_doc">
+									<div><image src="img/icon/check.png" width="20px"/></div>
+									<div zclass="padding3" align="justify"> <label value="El Proveedor deberá dar respuesta al reclamo en un plazo no mayor a treinta (30) días calendario, pudiendo
+	 ampliar el plazo hasta por treinta (30) días más, previa comunicación al usuario." zclass="lbl_normal1"/> </div>
+								</div>
+							</div>
+							<!-- BOTONOES -->
+							<div zclass="div_body_item div_border" >
+								<div width="40%">
+									<div>
+										<label visible="false" value="captcha"></label>
+									</div>
+								</div>
+								<div zclass="div_body_item align_center div_mid" align="center">
+									<div zclass="div_btn_izq" align="center">
+											<button zclass="btn_form_" id="btnsalir" onClick="@command('changeInterface',id=self.id)" image="img/icon/salir.png">SALIR</button>
+									</div>
+									<div zclass="div_btn_izq" align="center">
+<!-- 										<button zclass="btn_form_" id="recaptcha" sclass="g-recaptcha boton_enviar" visible="@bind(vmForm.mostrarEnviar)" -->
+<!-- 								    		ca:data-sitekey="6Let8B8UAAAAAIe6nfYJbhenKRzmlyAq7s6uXaef" -->
+<!-- 								    		ca:data-callback='afterValidate' image="img/icon/continue.png"> -->
+<!-- 								    		ENVIAR -->
+<!-- 								    	</button> -->
+								    	<button zclass="btn_form_" id="btnenviar" onClick="@command('changeInterface',id=self.id)" image="img/icon/continue.png" visible="@bind(vmForm.mostrarEnviar)">ENVIAR</button>
+									</div>
+								</div>
+							</div>
+							<div style="padding-top:10px;padding-bottom: 10px;"> <div height="20px" style="background:#E41C44;"></div> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<window width="600px" height="auto" zclass="win_model" mode="modal" visible="@bind(vmForm.pasofinal)">
+				<vbox align="center" width="100%" height="100%" zclass="win_model_">
+					<div zclass="div_body_item">
+						<div width="25%">
+<!-- 							<image src="img/logo2.png" width="150px"/> -->
+						</div>
+						<div width="75%">
+							<div>
+								<image src="img/icon/checking.png" width="20px"/>
+								<label value="La información se guardo correctamente" zclass="lbl_normal1"/>
+							</div>
+							<div style="transform: scaleY(2);padding-top: 10px;">
+								<label value="SU CODIGO ES :" zclass="lbl_normal3"/>
+								<space></space>
+								<label value="@bind(vmForm.reclamo.idreclamo)" zclass="lbl_normal3"/>
+							</div>
+						</div>
+					</div>
+					<div zclass="" align="left">
+			 			<div zclass="div_ok">
+			 				<image src="img/icon/star.png" width="15px"/>
+			 				<label value="Usted puede hacer seguimiento ingresando su código" zclass="lbl_normal1"/>
+			 			</div>
+			 			<div zclass="div_ok">
+			 				<image src="img/icon/star.png" width="15px"/>
+			 				<label value="Se le envió a su email la confirmación de su reclamo" zclass="lbl_normal1"/>
+			 			</div>
+			 		</div>
+					<div zclass="div_body_item justify_flex_end" align="right">	
+						<div id="btnaceptar" width="100px" zclass="div_btn_aux" onClick="@command('changeInterface',id=self.id)">
+							<label value="ACEPTAR" zclass="lbl_normal1"/>
+						</div>
+					</div>
+				</vbox>
+			</window>
+		<div style="background-color:#030303;padding:5px;" height="30px" align="center">
+			<label value="" style="color:white;"></label>
+		</div>
+	</div>
+	<window width="600px" height="auto" zclass="win_model" mode="modal" visible="@bind(vmForm.verFormulario)">
+		<div align="center">
+			<image src="img/warning.png"></image>
+		</div>
+		<div align="center">
+			<label value="Este formulario no esta disponible contactese con el administrador" zclass="lbl_normal3"></label>
+		</div>
+		<div align="center">
+			<button id="btnaceptar" label="ACEPTAR" onClick="@command('changeInterface',id=self.id)"></button>
+		</div>
+	</window>
+</div>
+
+</zk>

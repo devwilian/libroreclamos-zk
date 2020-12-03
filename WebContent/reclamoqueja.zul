@@ -1,0 +1,28 @@
+<?page title="Formulario de Reclamo" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/favicon.ico"?>
+<?link  rel="stylesheet" type="text/css" href="css/formulario.css"?>
+<?link  rel="stylesheet" type="text/css" href="css/general.css"?>
+<?link  rel="stylesheet" type="text/css" href="fonts/font-awesome.css"?>
+<?link  rel="stylesheet" type="text/css" href="fonts/zk.css"?>
+<?link  href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet"?>
+<zk xmlns:ca="client/attribute" >
+	<script type="text/javascript" src='https://www.google.com/recaptcha/api.js' defer="true" />
+				<script><![CDATA[ 
+		function afterValidate(response){
+			zkbind.$('$recaptcha').command('verify', {"response":response});
+		} 
+	]]>
+	</script>	
+	<div id="form" viewModel="@id('vmC')@init('com.libro.viewModel.reclamoquejaVM')">
+<!-- 		<button id="recaptcha" sclass="g-recaptcha boton_enviar" -->
+<!--     		ca:data-sitekey="6Let8B8UAAAAAIe6nfYJbhenKRzmlyAq7s6uXaef" -->
+<!--     		ca:data-callback='afterValidate' image="img/icon/continue.png"> -->
+<!--     		Submit -->
+<!--     	</button> -->
+    	<checkbox id="recaptcha" sclass="g-recaptcha boton_enviar"
+    			ca:data-sitekey="6Let8B8UAAAAAIe6nfYJbhenKRzmlyAq7s6uXaef"
+    			ca:data-callback='afterValidate'>
+    	Validar
+    	</checkbox>
+	</div>
+</zk>

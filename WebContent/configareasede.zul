@@ -1,0 +1,72 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"/>
+<style src="css/configsedearea.css"></style>
+<div viewModel="@id('vmArea') @init('com.libro.viewModel.configsedeareaVM')">
+<div zclass="div_general">
+	<div zclass="div_contenido1" align="center">
+		<listbox model="@bind(vmArea.listasedeOcurrencia)">
+		    <listhead>
+		        <listheader width="50px"><label value="Codigo" zclass="lbl_header"></label></listheader>
+		        <listheader><label value="Nombre" zclass="lbl_header"></label></listheader>
+		        <listheader width="130px"><label value="Opciones" zclass="lbl_header"></label></listheader>
+		    </listhead>
+		    <template name="model">
+		    	<listitem onClick="@command('changeSedeOcurrencia',id=each.idsedeocurrencia,descripcion=each.nombre)">
+			        <listcell><label value="@bind(each.idsedeocurrencia)" /></listcell>
+			        <listcell>
+			        	<label value="@bind(each.nombre)"/>
+			        </listcell>
+			        <listcell><label value="Editar" zclass="btnEditar" onClick="@command('actualizarSede',id=each.idsedeocurrencia,valor=each.nombre,comp=self)"/><space/><label value="Eliminar" onClick="@command('eliminarSede',id=each.idsedeocurrencia,valor=each.nombre,comp=self)" zclass="btnEliminar"/></listcell>
+			    </listitem>
+		    </template>
+		</listbox>
+		<space></space>
+		<div visible="@bind(vmArea.editable)">
+			<textbox value="@bind(vmArea.sedeOcurrencia.nombre) @save(vmArea.sedeOcurrencia.nombre)" width="60%" zclass="textboxuppercase"/>
+			<label value="Guardar" onClick="@command('guardarModificado',comp=self)" zclass="btnEditar"/>
+			<label value="Cancelar" onClick="@command('cancelar')" zclass="btnEliminar"/>
+		</div>
+		<space></space>
+		<button id="btnareanuevo" visible="@bind(!vmArea.verNuevoSede)" label="Agregar Nuevo Sede" onClick="@command('editarSede')"></button>
+		<div visible="@bind(vmArea.verNuevoSede)">
+			<textbox id="txtsede" placeholder="NUEVO SEDE" zclass="textboxuppercase"></textbox>
+			<space></space>
+			<label value="Guardar" onClick="@command('guardarNuevoSede',valor=txtsede.value,comp=self)" zclass="btnEditar"></label>
+			<label value="Cancelar" onClick="@command('cancelar')" zclass="btnEliminar"></label>
+		</div>
+	</div>
+	<space></space>
+	<div zclass="div_contenido2" visible="@bind(vmArea.verArea)" align="center">
+		<listbox model="@bind(vmArea.listaareaOcurrencia)">
+		    <listhead>
+		        <listheader width="50px"><label value="Codigo" zclass="lbl_header"></label></listheader>
+		        <listheader><label value="NOMBRE DE AREA EN " zclass="lbl_header"/><space/><label value="@bind(vmArea.sedeOcurrencia.nombre)" zclass="lbl_header"/> </listheader>
+		        <listheader width="130px"><label value="Opciones" zclass="lbl_header"></label></listheader>
+		    </listhead>
+		    <template name="model">
+		    	<listitem zclass="celda" onClick="">
+			        <listcell><label value="@bind(each.idareaocurrencia)" /></listcell>
+			        <listcell><label value="@bind(each.nombre)" /></listcell>
+			        <listcell><label value="Editar" zclass="btnEditar" onClick="@command('updateSede',id=each.idareaocurrencia,valor=each.nombre,comp=self)"/><space/><label value="Eliminar" onClick="@command('eliminarArea',id=each.idareaocurrencia,valor=each.nombre,comp=self)" zclass="btnEliminar"/></listcell>
+			    </listitem>
+		    </template>
+		</listbox>
+		<space/>
+		<div visible="@bind(vmArea.edit)">
+			<textbox value="@bind(vmArea.areaOcurrencia.nombre) @save(vmArea.areaOcurrencia.nombre)" width="60%" zclass="textboxuppercase"/>
+			<label value="Guardar" onClick="@command('guardarModificadoArea',comp=self)	" zclass="btnEditar"/>
+			<label value="Cancelar" onClick="@command('cancelar')" zclass="btnEliminar"/>
+		</div>
+		<space/>
+		<button id="btnsedenuevo" visible="@bind(!vmArea.verSedeNuevo)" label="Agregar Nuevo Area" onClick="@command('activarNuevo')"></button>
+		<div visible="@bind(vmArea.verSedeNuevo)">
+			<textbox id="txtarea" placeholder="NUEVO SEDE" zclass="textboxuppercase"></textbox>
+			<space></space>
+			<label value="Guardar" zclass="btnEditar" onClick="@command('guardarNuevoArea',valor=txtarea.value,comp=self)"/>
+			<label value="Cancelar" zclass="btnEliminar" onClick="@command('cancelar')"/>
+		</div>
+	</div>
+</div>
+</div>
+</zk>

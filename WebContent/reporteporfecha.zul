@@ -1,0 +1,89 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="css/general.css"></style>
+<style src="css/reportes.css"></style>
+<div viewModel="@id('vmPorFecha') @init('com.libro.viewModel.reporteporfechasVM')">
+<div>
+	<grid zclass="grid_cabecera">
+		<rows sclass="narrow">
+			<row align="center">
+				<label id="idrq" value="REPORTE DE QUEJA Y RECLAMO" zclass="lbl_btnR" onClick="@command('ordenar',id=self.id)"/>
+				<label id="idr" value="REPORTE DE RECLAMO" zclass="lbl_btnR" onClick="@command('ordenar',id=self.id)"/>
+				<label id="idq" value="REPORTE DE QUEJA" zclass="lbl_btnR" onClick="@command('ordenar',id=self.id)"/>
+			</row>
+		</rows>
+	</grid>
+	<space></space>
+</div>
+<div>
+	<grid zclass="grid_fecha">
+		<rows sclass="narrow">
+			<row>
+			</row>
+		</rows>
+	</grid>
+	<div zclass="div_flex_fechas">
+		<div>
+			<image src="img/icon/foco.png" height="20px"></image>
+			<label value="REPORTE POR FECHA"></label>
+		</div>
+		<space></space>
+		<div align="center">
+			<datebox format="dd-MM-yyyy" readonly="true" placeholder="Desde" onChange="@command('fechaDesde',fecha=self.value)"/>
+		</div>
+		<space></space>
+		<div align="center">
+			<datebox format="dd-MM-yyyy" readonly="true" placeholder="Hasta" onChange="@command('fechaHasta',fecha=self.value)"/>
+		</div>
+	</div>
+</div>
+<div style="margin-top:5px;">
+	<div zclass="vistagrande">
+		<listbox model="@bind(vmPorFecha.listaSolucionado)" width="100%" mold="paging" pageSize="10">
+		    <listhead>
+		        <listheader width="40px" style="text-align: center;"><label value="Nro" zclass="lbl_header"></label></listheader>
+		        <listheader width="120px"><label value="Reclamo" zclass="lbl_header"></label></listheader>
+		        <listheader width="300px"><label value="Apellidos y Nombres" zclass="lbl_header"></label></listheader>
+		        <listheader width="100px"><label value="Fecha" zclass="lbl_header"></label></listheader>
+		        <listheader width="90px"><label value="Tipo" zclass="lbl_header"></label></listheader>
+		        <listheader width="410px"><label value="Solucion" zclass="lbl_header"></label></listheader>
+		    </listhead>
+		    <template name="model">
+		    	<listitem onClick="">
+			        <listcell style="text-align: center;"><label value="@bind(each.idsolucionado)" /></listcell>
+			        <listcell><label value="@bind(each.idreclamo)"></label></listcell>
+			        <listcell><label value="@bind(each.razonsocial)"/><label value="@bind(each.apellidos)" /><space></space><label value="@bind(each.nombres)" /></listcell>
+			        <listcell><label value="@bind(each.fecha)" zclass="correo"/> </listcell>
+			        <listcell><label value="@bind(each.tipo)" /></listcell>
+			        <listcell><label value="@bind(each.solucion)"></label> </listcell>
+			    </listitem>
+		    </template>
+		</listbox>
+	</div>
+	<div zclass="vistatelefono">
+		<listbox model="@bind(vmPorFecha.listaSolucionado)" width="100%" mold="paging" pageSize="5" pagingPosition="both">
+		    <template name="model">
+		    	<listitem onClick="">
+			        <listcell>
+			        	<div style="padding-bottom:10px;">
+							<separator bar="true"></separator>
+							<div zclass="block"><label value="Codigo : " zclass="lbl_telefoon"/><label value="@bind(each.idsolucionado)"/></div>
+							<div zclass="block"><label value="Reclamo : " zclass="lbl_telefoon"/><label value="@bind(each.idreclamo)"/></div>
+							<div zclass="block"><label value="Nombres y Apellidos : " zclass="lbl_telefoon"/><div><label value="@bind(each.razonsocial)"/><label value="@bind(each.nombres)"/><space/><label value="@bind(each.apellidos)"/></div></div>
+							<div zclass="block"><label value="Fecha : " zclass="lbl_telefoon"/><label value="@bind(each.fecha)"/></div>
+							<div zclass="block"><label value="Tipo : " zclass="lbl_telefoon"/><label value="@bind(each.tipo)"/></div>
+							<div zclass="block"><label value="Solucion : " zclass="lbl_telefoon"/><label value="@bind(each.solucion)"/></div>
+						</div>
+			        </listcell>
+			    </listitem>
+		    </template>
+		</listbox>
+	</div>
+	<space></space>
+	<div align="right" zclass="flex">
+		<label value="Volver" zclass="btn_volver" onClick="@global-command('cerrar')"></label>
+		<button image="img/icon/excel.png" label="EXPORTAR EXCEL" onClick="@command('generarReporte',comp=self)"></button>
+	</div>
+</div>
+</div>
+</zk>

@@ -1,0 +1,129 @@
+.grid_cabecera{
+	background: #D9DADA;
+	border-radius: 5px;
+	padding: 10px;
+	font-weight: bold;
+}
+.estilotelefono{
+	display: none;
+}
+.estilogrande{
+	display: block;
+}
+.grid_fecha{
+	display:flex;
+	background: transparent;
+	justify-content: flex-start;
+}
+.icono_reportes{
+	width: 180px;
+	background: #EBECEC;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	border: 1px solid gray;
+	padding: 10px;
+	cursor: pointer;
+}
+.icono_reportes:hover{
+	border: 1px solid #ee6f88;
+}
+.icono_reportes:active{
+	border: 2px solid #EEEEEE;
+}
+.lbl_reporte{
+	font-family: 'Agency FB';
+	font-size: 24px;
+	font-weight: bold;
+}
+.lbl_btnR{
+	cursor: pointer;
+	font-family: 'Titillium Web';
+	font-weight: bold;
+}
+.lbl_btnR:hover{
+	border-bottom: 3px solid #EEEEEE;
+}
+.lbl_btnR:active{
+	padding-bottom:0px;
+	padding-top: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-top: 1px solid #EEEEEE;
+	border-left: 1px solid #EEEEEE;
+	border-right: 1px solid #EEEEEE;
+	border-bottom: 3px solid #EEEEEE;
+	border-radius: 5px;
+}
+label{
+	font-family: 'Bahnschrift';
+}
+.div_info_reportes{
+	width: 50%;
+}
+.lbl_nropersonas{
+	font-size: 50px;
+	font-family: 'Agency FB';
+	font-weight: bold;
+}
+.div_leyenda{
+	border: 1px solid #EEEEEE;
+	border-radius: 10px;
+	width: 40%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.estilo_reportes{
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.div_flex_fechas{
+	display: flex;
+	align-items:center;
+}
+.vistagrande{
+	display: block;
+}
+.vistatelefono{
+	display: none;
+}
+.flex_right{
+	display: flex;
+	justify-content:end;
+	align-items:center;
+}
+.div_lista_usuario{
+	width: 40%;
+}
+.div_buscar_usuario{
+	width: 40%;
+}
+@media (max-width:900px){
+	.estilo_reportes{
+		display: block;
+	}
+	.vistagrande{
+		display: none;
+	}
+	.vistatelefono{
+		display: block;
+	}
+	.grid_cabecera{
+		display: block;
+	}
+	.grid_fecha{
+		display: block;
+	}
+	.div_flex_fechas{
+		display: block;
+	}
+	.div_lista_usuario{
+		width: 99%;
+	}
+	.div_buscar_usuario{
+		width: 99%;
+	}
+}

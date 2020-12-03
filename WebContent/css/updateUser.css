@@ -1,0 +1,89 @@
+.div_content_datos_updateUser{
+	background: #ffffff;
+	border-radius:5px;
+	padding: 10px;
+	width: 50%;
+}
+.div_contenedor_nuevo_updateUser{
+	display: flex;
+	padding: 10px;
+	background: #fff;
+	margin-top: 5px;
+	border-radius:5px; 
+}
+.div_content_img_list_update{
+		width: 100%;
+		padding: 1%;
+		display: flex;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		justify-content: center;
+		-webkit-justify-content: center;
+		-moz-justify-content: center;
+		-ms-justify-content: center;
+		-o-justify-content: center;
+		align-items: center;
+		-webkit-align-items: center;
+		-moz-align-items: center;
+		-ms-align-items: center;
+		-o-align-items: center;
+		flex-direction: column;
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		-o-flex-direction: column;
+}
+.btn_subir{
+	background:#3BA420; 
+	border-color:#3BA420;
+	border-radius: 5px;
+	width: 80%;
+	height: 40px;
+	border: none;
+	color: white;
+	font-size: 18px;
+	font-weight:bold;
+	text-decoration: none !important;
+}
+
+.btn_subir:FOCUS {
+	background:#3BA420; 
+}
+
+.btn_subir:HOVER {
+	background:#3BA420; 
+}
+
+.estilo_ver_contrasenia {
+	cursor: pointer;
+}
+.estilo_aviso_password {
+	font-size: 14px;
+	color: black;
+	font-weight: bold;
+}
+.verContra{
+	cursor: pointer;
+}
+
+@MEDIA (max-width:900px) {
+	.btn_subir {
+	  width: 100% !important;
+	}
+	.div_contenedor_nuevo_updateUser{
+		flex-direction:column;
+		-webkit-flex-direction:column;
+		-moz-flex-direction:column;
+		-ms-flex-direction:column;
+		-o-flex-direction:column;
+	}
+	.div_content_datos_updateUser{
+		width: 100%;
+	}
+	.div_content_img_list_update{
+		width: 100% !important;
+		padding: 1%;
+	}
+}

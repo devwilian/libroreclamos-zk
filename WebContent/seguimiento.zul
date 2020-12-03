@@ -1,0 +1,81 @@
+<?page viewport="width=device-width, initial-scale=1.0,  user-scalable=no"?>
+<?page title="Libro Reclamaciones" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="ICO/favicon.ico"?>
+<?link  rel="stylesheet" type="text/css" href="fonts/font-awesome.css"?>
+<?link  href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet"?>
+<zk>
+<style src="css/general.css"/>
+<style src="css/seguimiento.css"></style>
+<div viewModel="@id('vm')@init('com.libro.viewModel.seguimientoVM')" zclass="win_model_">
+	<div zclass="cab_cabecerageneral" align="right" height="90px">
+		<div zclass="div_cabecera_info_segui" height="80px">
+			<div zclass="div_titulo_cabecera">
+<!-- 				<div><label value="BIENVENIDO" zclass="lbl_titulo2"/></div> -->
+			</div>
+			<div zclass="div_info_cabecera_segui" align="center">
+				<image src="img/libro.png" height="50px"/>
+				<div><label value="Telefono: " zclass="lbl_normal5"/><label value="@bind(vm.empresa.telefono1)" zclass="lbl_normal5"/><space/><label value="@bind(vm.empresa.telefono2)" zclass="lbl_normal5"/></div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div zclass="displayflexcenter content">
+			<image src="img/icon/candado.png" height="80px"/>
+			<label value="INGRESE CODIGO." zclass="lbl_normal3" style="text-align: center;"/>
+			<div zclass="flex estilotelefono">
+				<textbox id="txtcodigo" placeholder="H-00001" zclass="txt_segui" 
+					onChange="@command('buscarReclamo',valor=txtcodigo.value,comp=txtcodigo)" onOK="@command('buscarReclamo',valor=txtcodigo.value,comp=txtcodigo)" style="text-align: center;"/>
+				<image src="img/icon/ojo.png" height="30px" zclass="btn_buscar" onClick="@command('buscarReclamo',valor=txtcodigo.value,comp=txtcodigo)"/>
+			</div>
+		</div>
+		<div visible="@bind(vm.inicio)">
+			<label zclass="lbl_normal1" value="Se le dio un codigo al momento de enviar su reclamo, por favor ingrese para ver el 
+estado de su reclamo."/>
+		</div>
+		<div visible="@bind(vm.recibido)">
+			<label value="Su reclamo aun no ah sido revisado, nuestro departamento 
+de atención al cliente se pondrá en contacto con usted." zclass="lbl_normal1"/>
+		</div>
+		<!-- visibilidad de 50% -->
+		<div visible="@bind(vm.ver50)">
+			<div align="center">
+				<div zclass="porcentaje50">
+					<label value="50%" zclass="lbl_normal1" style="color:#E41C44;font-weight: bold;"/>
+				</div>
+				<div zclass="flex div_cuad">
+					<progressmeter value="50"></progressmeter>
+				</div>
+			</div>
+			<div>
+				<label value="Estamos en proceso de solucionar su reclamo, nuestro
+departamento de atención al cliente se pondrá en
+contacto con usted. Tenemos un tiempo de 30 días calendario para tender su queja o reclamo." zclass="lbl_normal1"/>
+			</div>
+		</div>
+		<!-- visibilidad de 100% -->
+		<div visible="@bind(vm.ver100)">
+			<div>
+				<div> <label value="Su reclamo ha sido solucionado de la siguiente manera." zclass="lbl_normal1"/> </div>
+			</div>
+			<div align="center">
+				<div zclass="porcentaje100">
+					<label value="100%" zclass="lbl_normal1" style="color:#E41C44;font-weight: bold;"/>
+				</div>
+				<div zclass="flex div_cuad">
+					<progressmeter value="100"></progressmeter>
+				</div>
+			</div>
+			<div>
+				<label value="Su reclamo a sido solucionado de la siguiente manera" zclass="lbl_normal1"/>
+			</div>
+			<div zclass="div_border flex">
+				<image src="img/icon/iconoadjuntar.png" height="40px" visible="@bind(vm.document)"/>
+				<label value="@bind(vm.detallesolucion)" zclass="lbl_normal1 padding2"/>
+			</div>
+		</div>
+	</div>
+	<div align="right">
+		<div width="100px" zclass="div_btn_aux padding2" align="center" onClick="@global-command('botonaceptar')"> <label value="Salir" zclass="lbl_normal1"/> </div>
+	</div>
+</div>
+</zk>

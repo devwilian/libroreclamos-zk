@@ -1,0 +1,30 @@
+.div_usuario{
+	padding-top:5px;
+	border: 2px solid #EEEEEE;
+}
+.titulo1{
+	font-family: 'Bahnschrift';
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.titulo2{
+	font-family: 'Bahnschrift';
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.div_usuario {
+    border: 3px solid rgba(0,0,0,0.3);
+    border-radius:5px;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 4px rgba(41,51,57,0.5);
+    display: flex;
+	align-items: center;
+}
+.img_usuario{
+	width: 150px;
+	height: 160px;
+	border: 1px solid rgb(228,28,68,0.5);
+}
