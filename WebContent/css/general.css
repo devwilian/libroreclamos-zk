@@ -113,6 +113,7 @@
 .textbox:focus{
 	border-bottom:3px solid #EEEEEE;
 }
+
 .txtbox{
 	border-top: none;
 	border-left: none;
@@ -126,6 +127,11 @@
 .txtbox:focus{
 	border-bottom:3px solid #EEEEEE;
 }
+
+
+
+
+
 .textboxuppercase{
 	border-top: none;
 	border-left: none;

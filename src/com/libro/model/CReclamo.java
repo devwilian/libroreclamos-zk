@@ -19,10 +19,18 @@ public class CReclamo {
 	private boolean recibido;
 	private boolean proceso;
 	private boolean solucionado;
+	private String tipoBienContratado;
 	
 	//contructores
+	
 	public ArrayList<CGaleria> getListaImagenes() {
 		return listaImagenes;
+	}
+	public String getTipoBienContratado() {
+		return tipoBienContratado;
+	}
+	public void setTipoBienContratado(String tipoBienContratado) {
+		this.tipoBienContratado = tipoBienContratado;
 	}
 	public Date getFechareclamo() {
 		return fechareclamo;
@@ -127,12 +135,13 @@ public class CReclamo {
 		recibido=false;
 		proceso=false;
 		solucionado=false;
+		tipoBienContratado="producto";
 	}
 	public CReclamo(String pidreclamo,int psolicitante,int ptipoproblema,
 			int psedeocurrencia,int pareaocurrencia,
 			Date pfecha,String pdetallereclamo,
 			String psolicitudreclamo,boolean pdocmultimedia,
-			boolean precibido,boolean pproceso,boolean psolucionado,Date pfechareclamo)
+			boolean precibido,boolean pproceso,boolean psolucionado,Date pfechareclamo,String tipoBien)
 	{
 		idreclamo=pidreclamo;
 		solicitante=psolicitante;
@@ -148,5 +157,22 @@ public class CReclamo {
 		recibido=precibido;
 		proceso=pproceso;
 		solucionado=psolucionado;
+		tipoBienContratado=tipoBien;
+	}
+	public String getAllItems(){
+		return "CReclamo "+idreclamo+" "+
+		solicitante+" "+
+		tipoproblema+" "+
+		sedeocurrencia+" "+
+		areaocurrencia+" "+
+		fecha+" "+
+		fechareclamo+" "+
+		detallereclamo+" "+
+		solicitudreclamo+" "+
+		docmultimedia+" "+
+		listaImagenes.size()+" "+
+		recibido+" "+
+		proceso+" "+
+		solucionado;
 	}
 }

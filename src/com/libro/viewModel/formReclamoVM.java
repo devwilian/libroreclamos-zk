@@ -160,7 +160,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	@Command
 	@NotifyChange({"activarTipoRuc"})
 	public void changeTipoDocumento(@BindingParam("id")String id,@BindingParam("descripcion")String descripcion){
-		System.out.println("Tipo documento "+id+"-->"+descripcion);
+//		System.out.println("Tipo documento "+id+"-->"+descripcion);
 		if(id!=null && descripcion!=null){
 			if(descripcion.trim().toLowerCase().equals("ruc")){
 				activarTipoRuc=true;
@@ -181,7 +181,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	}
 	@Command
 	public void validarNroDocs(@BindingParam("valor")String valor,@BindingParam("com")Component comp){
-		System.out.println("Tipo documento "+tipoDocumento.getIdtipodocumento()+"-->"+tipoDocumento.getDescripcion());
+//		System.out.println("Tipo documento "+tipoDocumento.getIdtipodocumento()+"-->"+tipoDocumento.getDescripcion());
 		if (tipoDocumento.getDescripcion().toLowerCase().trim().equals("dni") || tipoDocumento.getDescripcion().toLowerCase().trim().equals("ruc")) {
 			if (!nroDocValido(valor)) {
 				Clients.showNotification("Error en el numero de documento",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
@@ -237,6 +237,42 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		}
 	}
 	@Command
+	public void pais(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error en el pais",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+		}else{
+			solicitante.setPais(aux);
+		}
+	}
+	@Command
+	public void ciudad(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error en el ciudad",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+		}else{
+			solicitante.setCiudad(aux);
+		}
+	}
+	@Command
+	public void provincia(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error en la provincia",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+		}else{
+			solicitante.setProvincia(aux);
+		}
+	}
+	@Command
+	public void distrito(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error en el distrito",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+		}else{
+			solicitante.setDistrito(aux);
+		}
+	}
+	@Command
 	public void changeTelefono(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
 		if (!telfValido(valor)) {
 			Clients.showNotification("Error en el numero de telefono",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
@@ -250,19 +286,6 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			Clients.showNotification("Error en el correo",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
 		}else{
 			correo=valor;
-		}
-	}
-	@Command
-	public void confirmEmail(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
-		if (!mailValido(valor)) {
-			Clients.showNotification("Error en el correo",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
-		}else{
-			correoconfir=valor;
-			if(!correo.equals(correoconfir)){
-				Clients.showNotification("los correos no coinciden",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
-			}else{
-				solicitante.setCorreo(valor);
-			}
 		}
 	}
 	@Command
@@ -288,7 +311,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	public void changeFecha(@BindingParam("fecha")Date fecha){
 		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 		String Fecha=sdf.format(fecha);
-		System.out.println("fecha es:"+Fecha);
+//		System.out.println("fecha es:"+Fecha);
 		String dia=Fecha.substring(0,2);
 		String mes=Fecha.substring(3,5);
 		String anio=Fecha.substring(6,10);
@@ -296,6 +319,19 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		Calendar cal=Calendar.getInstance();
 		cal.set(Integer.parseInt(anio),Integer.parseInt(mes)-1,Integer.parseInt(dia));
 		/*************Fecha Arribo***********************/
+		reclamo.setFecha(cal.getTime());
+	}
+	
+	@Command
+	public void changeFechaNacimiento(@BindingParam("fecha")Date fecha){
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		String Fecha=sdf.format(fecha);
+		String dia=Fecha.substring(0,2);
+		String mes=Fecha.substring(3,5);
+		String anio=Fecha.substring(6,10);
+		
+		Calendar cal=Calendar.getInstance();
+		cal.set(Integer.parseInt(anio),Integer.parseInt(mes)-1,Integer.parseInt(dia));
 		reclamo.setFecha(cal.getTime());
 	}
 	@Command
@@ -330,14 +366,23 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		
 	}
 	@Command
+	public void identificacionBienContratado(@BindingParam("valor")String valor){
+		if (valor.toString().equals("producto")) {
+			reclamo.setTipoBienContratado(valor.toLowerCase());;
+		}else if(valor.toString().equals("servicio")){
+			reclamo.setTipoBienContratado(valor.toLowerCase());;
+		}
+		
+	}
+	@Command
 	public void changeDescripcionReclamo(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
 		detallereclamooqueja=valor;
-		System.out.println(detallereclamooqueja);
+//		System.out.println(detallereclamooqueja);
 	}
 	@Command
 	public void changeSolicitudReclamo(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
 		solicitudreclamooqueja=valor;
-		System.out.println(solicitudreclamooqueja);
+//		System.out.println(solicitudreclamooqueja);
 	}
 
 	@Command
@@ -357,7 +402,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			}else{
 				checked=false;
 			}
-			System.out.println(checked+" "+disabled);
+//			System.out.println(checked+" "+disabled);
 			if (mostrarEnviar()) {
 				mostrarEnviar=true;
 			}else{
@@ -369,19 +414,14 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	@NotifyChange({"pasofinal","reclamo"})
 	public void changeInterface(@BindingParam("id")String id) throws IOException, DocumentException{
 		if(id.toLowerCase().equals("btnenviar")){
+			reclamo.setListaImagenes(listaGaleriaReclamo);
 			reclamo.setIdreclamo(enviarReclamoQueja());
 		}else if(id.toLowerCase().equals("btnaceptar")){
-			//System.out.println(id);
 			Executions.getCurrent().sendRedirect("/");
 		}
 	}
 	public String enviarReclamoQueja() throws IOException, DocumentException{
-		System.out.println("Lista de Motivos reclamo");
-		for (int i = 0; i < listaMRS.size(); i++) {
-			System.out.println(listaMRS.get(i).getDescripcion());
-		}
-		reclamo.setListaImagenes(listaGaleriaReclamo);
-		System.out.println("Tamanio de la lista de imagenes "+reclamo.getListaImagenes().size());
+		System.out.println(reclamo.getAllItems());
 		reclamo.setSolicitante(solicitanteDAO.codigoPersona(solicitanteDAO.insertarSolicitante(solicitante)));
 		String codigo=reclamoDAO.codigoReclamo(reclamoDAO.insertarReclamo(reclamo));
 		reclamo.setIdreclamo(codigo);
@@ -389,7 +429,6 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			motivoReclamoDAO.isOperationCorrect(motivoReclamoDAO.insertarOtroMotivoReclamo(codigo,detallesOtroMotivo));
 		}
 		if(codigo!=null){
-			//System.out.println("El codigo de Reclamo es "+codigo);
 			for (int i = 0; i < listaMRS.size(); i++) {
 				boolean aux=motivoReclamoDAO.isOperationCorrect(motivoReclamoDAO.insertarListaMotivoReclamo(codigo,listaMRS.get(i).getIdmotivoreclamo()));
 				//System.out.println("Lista Motivo Reclamo "+aux);
@@ -412,10 +451,11 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	public void enviarcorreo() throws IOException, DocumentException{
 		CEmail email=new CEmail();
 		ArrayList<CMotivoReclamo> mot=listaMotivo();
-		if (email.enviarCorreoReclamo(reclamo, solicitante, sedeOcurrencia, areaOcurrencia, tipoDocumento, tipoProblema, mot)) {
+		try {
+			email.enviarCorreoReclamo(reclamo, solicitante, sedeOcurrencia, areaOcurrencia, tipoDocumento, tipoProblema, mot);
 			System.out.println("Se envio correo");
-		}else{
-			System.out.println("Error en enviar correo");
+		} catch (Exception e) {
+			System.out.println("Error en enviar correo "+enviarReclamoQueja().toString());
 		}
 	}
 	public ArrayList listaMotivo(){
@@ -439,7 +479,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		for (int i = 0; i < listamotivo.size(); i++) {
 			int cod=Integer.parseInt(listamotivo.get(i).toString().split("/")[0]);
 			String descripcion=listamotivo.get(i).toString().split("/")[1];
-			System.out.println("Motivo Reclamo "+cod+" , "+descripcion);
+//			System.out.println("Motivo Reclamo "+cod+" , "+descripcion);
 			CMotivoReclamo problema=new CMotivoReclamo(cod,descripcion);
 			listaMRS.add(problema);
 		}
@@ -597,7 +637,6 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	}
 	public boolean validoText(String nombre)
 	{
-		System.out.println("Este es el nombre del contacto--> "+nombre);
 		boolean correcto=true;
 		for(int i=0;i<nombre.length();i++)
 		{
@@ -631,7 +670,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 								@BindingParam("comp") final Component comp)
 	{
 		org.zkoss.util.media.Media[] listaMedias = event.getMedias();
-		System.out.println("Lista Medias "+listaMedias.length);
+//		System.out.println("Lista Medias "+listaMedias.length);
 		if (listaMedias != null) {
 				for (Media media : listaMedias) {
 					Media img = media;
@@ -641,17 +680,6 @@ public class formReclamoVM extends SelectorComposer<Component>{
 					// ================================
 					String urlImagenAux = ScannUtil.getPathAuxFolder() + img.getName();
 					String urlImagenReal= ScannUtil.getPathImagenReclamos()+img.getName();
-					
-					//System.out.println("Datos del imagen "+b+" "+urlImagenAux+" "+urlImagenReal);
-//					
-//					if(!CReSizeImage.tamanioSuficiente(urlImagenAux))
-//					{
-//						CReSizeImage.copyImage(urlImagenAux,urlImagenReal,img.getFormat());
-//						File fichero = new File(urlImagenAux);
-//						boolean eliminar=fichero.delete();
-//						//System.out.println("Eliminar if "+eliminar);
-//					}else
-//					{
 						b = ScannUtil.uploadFileReclamos(img);
 						File fichero = new File(urlImagenAux);
 						boolean eliminar=fichero.delete();
@@ -677,7 +705,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		else
 			oGaleria.setcRutaImagen("img/imagenesdereclamos/"+auxNombre);
 		oGaleria.setVisible(true);
-		System.out.println("Ruta Imagen "+oGaleria.getcRutaImagen());
+//		System.out.println("Ruta Imagen "+oGaleria.getcRutaImagen());
 		listaGaleriaReclamo.add(oGaleria);
 	}
 	public boolean estaEnLaListaImagenes(String nameImagen,CReclamo paquete)
@@ -693,29 +721,6 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		}
 		return esta;
 	}
-	//**************************************** RECAPTCHA ******************************************//
-//	@Command
-//	@NotifyChange("mostrarEnviar")
-//	public void verify(@BindingParam("response")String response) throws Exception{
-//		JSONObject result = RecaptchaVerifier.verifyResponse(SECRET, response);
-//		if (Boolean.parseBoolean(result.get("success").toString())){
-//			disabled = true;
-//			if(!checked){
-//				Component comp=new formReclamoVM().getSelf();
-//				Clients.showNotification("Por favor Confirme la veracidad de los datos",Clients.NOTIFICATION_TYPE_ERROR, comp,"middle_center",2500);
-//			}
-//		}else{
-//			disabled=false;
-//			String errorCode = result.get("error-codes").toString();
-//			Clients.showNotification(errorCode);
-//		}
-//		if(mostrarEnviar()){
-//			mostrarEnviar=true;
-//		}else{
-//			mostrarEnviar=false;
-//		}
-//		System.out.println(disabled+" "+checked+" "+mostrarEnviar);
-//	}
 	@Command
 	public void irTerminosyCondiciones(){
 		Executions.getCurrent().sendRedirect(empresa.getTerminosycondiciones(), "_blank");
@@ -736,7 +741,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		}else{
 			mostrarEnviar=false;
 		}
-		System.out.println(disabled+" "+checked+" "+mostrarEnviar);
+//		System.out.println(disabled+" "+checked+" "+mostrarEnviar);
 
 	}
 	public boolean mostrarEnviar(){

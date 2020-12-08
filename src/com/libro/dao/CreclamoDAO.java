@@ -79,9 +79,10 @@ public class CreclamoDAO extends CConexion{
 				reclamo.isDocmultimedia(),
 				true,
 				false,
-				false
+				false,
+				reclamo.getTipoBienContratado()
 		};
-		return getEjecutorSQL().ejecutarProcedimiento("libro_insertarreclamoaux", values);
+		return getEjecutorSQL().ejecutarProcedimiento("libro_insertar_reclamo", values);
 	}
 	public void asginarListaReclamos(List lista){
 		//System.out.println("CreservaDAO "+lista.size());
@@ -118,7 +119,7 @@ public class CreclamoDAO extends CConexion{
 					(int)row.get("idtipoproblema"),(int)row.get("idsedeocurrencia"),
 					(int)row.get("idareaocurrencia"),(Date)row.get("fecha"),
 					(String)row.get("detallereclamo"),(String)row.get("solicitudreclamo"),(boolean)row.get("docmultimedia"),
-					(boolean)row.get("recibido"),(boolean)row.get("proceso"),(boolean)row.get("solucionado"),(Date)row.get("fechareclamo"));
+					(boolean)row.get("recibido"),(boolean)row.get("proceso"),(boolean)row.get("solucionado"),(Date)row.get("fechareclamo"),row.get("tipodebiencontratado").toString());
 //		}
 	}
 	public boolean isOperationCorrect(List lista)

@@ -29,6 +29,9 @@
 .div_body_item{
 	display: flex;
 }
+.div_body_item_center{
+	justify-content: center;
+}
 .div_detalles_ {
     align-items: center;
 }

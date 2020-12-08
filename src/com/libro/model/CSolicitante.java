@@ -10,6 +10,10 @@ public class CSolicitante {
 	private String correo;
 	private String direccion;
 	private String razonsocial;
+	private String pais;
+	private String ciudad;
+	private String provincia;
+	private String distrito;
 	public int getIdsolicitante() {
 		return idsolicitante;
 	}
@@ -63,6 +67,30 @@ public class CSolicitante {
 	}
 	public void setRazonsocial(String razonsocial) {
 		this.razonsocial = razonsocial;
+	}
+	public String getPais() {
+		return pais;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	public String getDistrito() {
+		return distrito;
+	}
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
 	}
 	public CSolicitante(){
 		idsolicitante=0;

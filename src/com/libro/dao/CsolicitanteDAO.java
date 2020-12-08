@@ -38,7 +38,11 @@ public class CsolicitanteDAO  extends CConexion{
 				solicitante.getNrotelefono(),
 				solicitante.getCorreo(),
 				solicitante.getDireccion(),
-				solicitante.getRazonsocial()
+				solicitante.getRazonsocial(),
+				solicitante.getPais(),
+				solicitante.getCiudad(),
+				solicitante.getProvincia(),
+				solicitante.getDistrito()
 		};
 		return getEjecutorSQL().ejecutarProcedimiento("libro_insertarsolicitante", values);
 	}

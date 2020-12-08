@@ -55,7 +55,7 @@
 				</row>
 				<row>
 					<label value="SMTP PASSWORD  "></label>
-					<textbox onChange="@command('changePassword',valor=self.value)" placeholder="Contrasenia" value="@bind(vmCorreo.correo.cSMTPPassword)" zclass="textbox" width="300px"></textbox>
+					<textbox onChange="@command('changePassword',valor=self.value)" placeholder="Contrasenia" value="@bind(vmCorreo.correo.cSMTPPassword)" zclass="txtContrasenia" width="300px"></textbox>
 				</row>
 				<row align="center">
 					<button label="CANCELAR" onClick="@command('cancelar')"/>

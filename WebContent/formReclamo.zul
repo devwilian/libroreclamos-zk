@@ -110,19 +110,41 @@
 										<div zclass="div_item_" align="left"> <textbox placeholder="Nombres" zclass="textboxuppercase" onChange="@command('nombres',valor=self.value,comp=self)"/></div>
 									</div>
 									<div zclass="div_body_item div_mid" >
-										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
-										<div zclass="div_item_" align="left"> <textbox placeholder="Telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
+										<div zclass="div_item_" align="left"> <label value="Fecha de nacimiento*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left">
+											<datebox format="dd-MM-yyyy" readonly="true" placeholder="Fecha nacimiento" constraint="no future" onChange="@command('changeFechaNacimiento',fecha=self.value)"/>
+										</div>
 									</div>
 								</div>
 							</div>
 							<div zclass="div_body_item">
+							<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
+									</div>
 								<div zclass="div_body_item div_mid" >
 									<div zclass="div_item_" align="left"> <label value="Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
 									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('changeEmail',valor=self.value,comp=self)"/></div>
 								</div>
+							</div>
+							<div zclass="div_body_item">
 								<div zclass="div_body_item div_mid" >
-									<div zclass="div_item_" align="left"> <label value="Confirmar Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
-									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('confirmEmail',valor=self.value,comp=self)"/></div>
+									<div zclass="div_item_" align="left"> <label value="Pais" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="Pais" zclass="textboxuppercase" onChange="@command('pais',valor=self.value,comp=self)"/></div>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Ciudad" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="Ciudad" zclass="textboxuppercase" onChange="@command('ciudad',valor=self.value,comp=self)"/></div>
+								</div>
+							</div>
+							<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Provincia" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="Provincia" zclass="textboxuppercase" onChange="@command('provincia',valor=self.value,comp=self)"/></div>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Distrito	" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="Distrito" zclass="textboxuppercase" onChange="@command('distrito',valor=self.value,comp=self)"/></div>
 								</div>
 							</div>
 							<div>
@@ -130,6 +152,20 @@
 									<div zclass="div_25" align="left"> <label value="Direccion" zclass="lbl_normal1 padding2 visiblephone"/></div>
 									<div zclass="div_75" align="left"> <textbox placeholder="Direccion:Jr. Las Gaviotas, Chorrillos Lima" zclass="textboxuppercase" onChange="@command('changeDireccion',valor=self.value,comp=self)"/></div>
 								</div>
+							</div>
+						</div>
+					</div>
+					<!--   IDENTIFICACION DEL BIEN CONTRATADO -->
+					<div zclass="div_identificaion_usuario div_body">
+						<div zclass="div_identificacion_title_sub">
+							<label value="IDENTIFICACION DEL BIEN CONTRATADO" zclass="lbl_titulo4"></label>
+						</div>
+						<div sclass="div_body_item_center">
+							<div align="center">
+								<radiogroup onCheck="@command('tipodeProblema',valor=self.selectedItem.value,comp=self)">
+					                <radio label="PRODUCTO" value="producto" zclass="lbl_normal1 radio_label"/>
+					                <radio label="SERVICIO" value="servicio" zclass="lbl_normal1 radio_label"/>
+							    </radiogroup>
 							</div>
 						</div>
 					</div>
@@ -283,11 +319,6 @@
 											<button zclass="btn_form_" id="btnsalir" onClick="@command('changeInterface',id=self.id)" image="img/icon/salir.png">SALIR</button>
 									</div>
 									<div zclass="div_btn_izq" align="center">
-<!-- 										<button zclass="btn_form_" id="recaptcha" sclass="g-recaptcha boton_enviar" visible="@bind(vmForm.mostrarEnviar)" -->
-<!-- 								    		ca:data-sitekey="6Let8B8UAAAAAIe6nfYJbhenKRzmlyAq7s6uXaef" -->
-<!-- 								    		ca:data-callback='afterValidate' image="img/icon/continue.png"> -->
-<!-- 								    		ENVIAR -->
-<!-- 								    	</button> -->
 								    	<button zclass="btn_form_" id="btnenviar" onClick="@command('changeInterface',id=self.id)" image="img/icon/continue.png" visible="@bind(vmForm.mostrarEnviar)">ENVIAR</button>
 									</div>
 								</div>
