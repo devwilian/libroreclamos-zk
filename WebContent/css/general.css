@@ -175,6 +175,12 @@
 .div_mid{
 	width: 50%;
 }
+.div_25{
+	width: 25%;
+}
+.div_75{
+	width: 75%;
+}
 .align_center{
 	justify-content:center;
 }

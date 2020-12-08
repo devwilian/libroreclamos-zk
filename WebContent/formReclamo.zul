@@ -110,21 +110,19 @@
 										<div zclass="div_item_" align="left"> <textbox placeholder="Nombres" zclass="textboxuppercase" onChange="@command('nombres',valor=self.value,comp=self)"/></div>
 									</div>
 									<div zclass="div_body_item div_mid" >
-										<div zclass="div_item_" align="left"> <label value="Fecha de nacimiento*" zclass="lbl_normal1 padding2 visiblephone"/></div>
-										<div zclass="div_item_" align="left">
-											<datebox format="dd-MM-yyyy" readonly="true" placeholder="Fecha nacimiento" constraint="no future" onChange="@command('changeFechaNacimiento',fecha=self.value)"/>
-										</div>
+										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
 									</div>
 								</div>
 							</div>
 							<div zclass="div_body_item">
-							<div zclass="div_body_item div_mid" >
-										<div zclass="div_item_" align="left"> <label value="Telefono" zclass="lbl_normal1 padding2 visiblephone"/></div>
-										<div zclass="div_item_" align="left"> <textbox placeholder="Telefono" zclass="textboxuppercase" onChange="@command('changeTelefono',valor=self.value,comp=self)"/></div>
-									</div>
 								<div zclass="div_body_item div_mid" >
 									<div zclass="div_item_" align="left"> <label value="Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
 									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('changeEmail',valor=self.value,comp=self)"/></div>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Confirmar Email*" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="email@yourdomain.com" style="text-transform: lowercase;" zclass="textbox" onChange="@command('confirmEmail',valor=self.value,comp=self)"/></div>
 								</div>
 							</div>
 							<div zclass="div_body_item">
