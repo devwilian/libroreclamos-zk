@@ -62,6 +62,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	private boolean pasofinal;
 	private boolean mostrarEnviar;
 	private boolean verFormulario;
+	private boolean agraviado;
 	
 	private String apellidopaterno;
 	private String apellidomaterno;
@@ -70,6 +71,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	private String detallesOtroMotivo;
 	private String detallereclamooqueja;
 	private String solicitudreclamooqueja;
+	private String reclamanteAgraviado;
 	
 	//VARIABLES DE CAPTCHA
 	
@@ -81,6 +83,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	private String PUBLIC;
 	private String fecha;
 	HttpSession seshttp;
+	
 	
 	@Init
 	public void initVM(){
@@ -96,6 +99,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			activarOtroMotivo=false;
 			pasofinal=false;
 			mostrarEnviar=false;
+			agraviado=true;
 			
 			listatipoDocumento=new ArrayList<CTipoDocumento>();
 			listasedeOcurrencia=new ArrayList<CSedeOcurrencia>();
@@ -130,6 +134,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			detallesOtroMotivo="";
 			solicitudreclamooqueja="";
 			detallereclamooqueja="";
+			reclamanteAgraviado="";
 			
 			verFormulario=reclamoDAO.esPriemeraVez(reclamoDAO.recuperarPrimeraVez());
 			
@@ -273,6 +278,26 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		}
 	}
 	@Command
+	public void detallesPersonaAgraviada(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error nombres de Persona agraviada",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",1500);
+		}else{
+			System.out.println("agraviado "+valor);
+			solicitante.setRepresentado(valor.toUpperCase());
+		}
+	}
+	@Command
+	public void detalleParentesco(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		String aux=valor.toUpperCase();
+		if (!validoText(aux)) {
+			Clients.showNotification("Error en parentesco",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",1500);
+		}else{
+			System.out.println("parentesco "+valor);
+			solicitante.setParentesco((valor.toUpperCase()));
+		}
+	}
+	@Command
 	public void changeTelefono(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
 		if (!telfValido(valor)) {
 			Clients.showNotification("Error en el numero de telefono",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
@@ -288,9 +313,46 @@ public class formReclamoVM extends SelectorComposer<Component>{
 			correo=valor;
 		}
 	}
+
+	@Command
+	public void confirmEmail(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+		if (!mailValido(valor)) {
+			Clients.showNotification("Error en el correo",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+		}else{
+			correoconfir=valor;
+			if(!correo.equals(correoconfir)){
+				Clients.showNotification("los correos no coinciden",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+			}else{
+				solicitante.setCorreo(valor);
+			}
+		}
+	}
 	@Command
 	public void changeDireccion(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
 		solicitante.setDireccion(valor);
+	}
+	
+	@Command
+	public void changeMontoContratado(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
+//		if (!nroDocValido(valor)) {
+//			Clients.showNotification("Error en el monto del bien",Clients.NOTIFICATION_TYPE_ERROR,comp,"end_before",2500);
+//		}else{
+			reclamo.setMontoreclamado(valor);
+//		}
+		
+	}
+	@Command
+	@NotifyChange({"agraviado"})
+	public void changeAgraviado(@BindingParam("valor")String valor){
+		reclamanteAgraviado=valor;
+		if(valor.equals("si")){
+			agraviado=true;
+			solicitante.setParentesco("");
+			solicitante.setRepresentado("");
+		}else if(valor.equals("no")){
+			agraviado=false;
+		}
+		System.out.println("Agraviado "+reclamanteAgraviado+" "+ agraviado);
 	}
 	@Command
 	@NotifyChange({"listaareaOcurrencia"})
@@ -323,20 +385,9 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	}
 	
 	@Command
-	public void changeFechaNacimiento(@BindingParam("fecha")Date fecha){
-		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
-		String Fecha=sdf.format(fecha);
-		String dia=Fecha.substring(0,2);
-		String mes=Fecha.substring(3,5);
-		String anio=Fecha.substring(6,10);
-		
-		Calendar cal=Calendar.getInstance();
-		cal.set(Integer.parseInt(anio),Integer.parseInt(mes)-1,Integer.parseInt(dia));
-		reclamo.setFecha(cal.getTime());
-	}
-	@Command
 	@NotifyChange({"activarOtroMotivo","detallesOtroMotivo"})
 	public void agregarListaMotivo(@BindingParam("id")String id,@BindingParam("valor")String valor){
+		System.out.println(listamotivo.size());
 		if(id.toString().equals("0")){
 			activarOtroMotivo=!activarOtroMotivo;
 		}
@@ -345,6 +396,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		}else{
 			listamotivo.remove(id+"/"+valor);
 		}
+		System.out.println(listamotivo.size());
 	}
 	@Command
 	public void changeOtroMotivo(@BindingParam("valor")String valor,@BindingParam("comp")Component comp){
@@ -393,15 +445,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 //			for (int i = 0; i < reclamo.getListaImagenes().size(); i++) {
 //				reclamo.getListaImagenes().get(i).getcRutaImagen().toString();
 //			}
-			if(validoIdentificacionUsuario(comp) && validoIdentificacionAtencionBrindada(comp) && validodetallesReclamo(comp)){
-				checked=true;
-				solicitante.setApellidos(apellidopaterno+" "+apellidomaterno);
-				solicitante.setCorreo(correo);
-				reclamo.setDetallereclamo(detallereclamooqueja);
-				reclamo.setSolicitudreclamo(solicitudreclamooqueja);
-			}else{
-				checked=false;
-			}
+			
 //			System.out.println(checked+" "+disabled);
 			if (mostrarEnviar()) {
 				mostrarEnviar=true;
@@ -412,11 +456,21 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	}
 	@Command
 	@NotifyChange({"pasofinal","reclamo"})
-	public void changeInterface(@BindingParam("id")String id) throws IOException, DocumentException{
+	public void changeInterface(@BindingParam("id")String id,@BindingParam("comp")Component comp) throws IOException, DocumentException{
+		pasarListaMotivos();
+		
 		if(id.toLowerCase().equals("btnenviar")){
-			reclamo.setListaImagenes(listaGaleriaReclamo);
-			reclamo.setIdreclamo(enviarReclamoQueja());
-		}else if(id.toLowerCase().equals("btnaceptar")){
+			if(validoIdentificacionUsuario(comp) && validoIdentificacionAtencionBrindada(comp) && validodetallesReclamo(comp) && mostrarEnviar){
+				checked=true;
+				solicitante.setApellidos(apellidopaterno+" "+apellidomaterno);
+				solicitante.setCorreo(correo);
+				reclamo.setDetallereclamo(detallereclamooqueja);
+				reclamo.setSolicitudreclamo(solicitudreclamooqueja);
+				reclamo.setIdreclamo(enviarReclamoQueja());
+			}else{
+				checked=false;
+			}
+		}else{
 			Executions.getCurrent().sendRedirect("/");
 		}
 	}
@@ -462,8 +516,7 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		ArrayList<CMotivoReclamo> motivo=new ArrayList<>();
 		for (int i = 0; i < listamotivo.size(); i++) {
 			int cod=Integer.parseInt(listamotivo.get(i).toString().split("/")[0]);
-			String descripcion=listamotivo.get(i).toString().split("/")[1];
-			//System.out.println("Motivo Reclamo "+cod+" , "+descripcion);			
+			String descripcion=listamotivo.get(i).toString().split("/")[1];	
 			if(cod==0){
 				CMotivoReclamo problema=new CMotivoReclamo(0,detallesOtroMotivo);
 				motivo.add(problema);
@@ -476,13 +529,15 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		return motivo;
 	}
 	public void pasarListaMotivos(){
+		ArrayList listaaux=new ArrayList();
 		for (int i = 0; i < listamotivo.size(); i++) {
 			int cod=Integer.parseInt(listamotivo.get(i).toString().split("/")[0]);
 			String descripcion=listamotivo.get(i).toString().split("/")[1];
 //			System.out.println("Motivo Reclamo "+cod+" , "+descripcion);
 			CMotivoReclamo problema=new CMotivoReclamo(cod,descripcion);
-			listaMRS.add(problema);
+			listaaux.add(problema);
 		}
+		listaMRS=listaaux;
 		if(activarOtroMotivo && detallesOtroMotivo.trim()!=""){
 			otroMotivoReclamo.setIdmotivoreclamo(0);
 			otroMotivoReclamo.setDescripcion(detallesOtroMotivo);
@@ -546,19 +601,35 @@ public class formReclamoVM extends SelectorComposer<Component>{
 				}
 			}
 		}
-		
+		if(reclamanteAgraviado==""){
+			valido=false;
+			Clients.showNotification("Seleccione si usted o algun familiar fue agraviado",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
+		}else{
+			if(!agraviado){
+				if(solicitante.getParentesco().length()==0){
+					valido =false;
+					Clients.showNotification("Ingrese parentesco con el reclamante",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
+				}
+				if(solicitante.getRepresentado().length()==0){
+					valido =false;
+					Clients.showNotification("Ingrese nombre completo del agraviado",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
+				}
+			}
+		}
 		return valido;
 	}
-	
 	public boolean validoIdentificacionAtencionBrindada(Component comp){
 		boolean valido=true;
 		
-		
+		if(reclamo.getTipoBienContratado().length()==0){
+			valido=false;
+			Clients.showNotification("Seleccione tipo de bien contratado",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
+		}
 		if(reclamo.getFecha().toString()==""){
 			valido=false;
 			Clients.showNotification("Fecha incorrecta",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
 		}
-		if(listaMRS.size()<1){
+		if(listaMRS.size()==0){
 			valido=false;
 			Clients.showNotification("Seleccione al menos un Motivo de queja o reclamo",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
 		}
@@ -581,6 +652,10 @@ public class formReclamoVM extends SelectorComposer<Component>{
 		if (detallereclamooqueja.trim()=="") {
 			valido=false;
 			Clients.showNotification("Por favor detalle su "+tipoProblema.getDescripcion(),Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
+		}
+		if (!checked) {
+			valido=false;
+			Clients.showNotification("Acepte los terminos y Condiciones",Clients.NOTIFICATION_TYPE_ERROR, comp,"before_start",2500);
 		}
 		return valido;
 	}
@@ -844,5 +919,11 @@ public class formReclamoVM extends SelectorComposer<Component>{
 	}
 	public void setVerForm(boolean verForm) {
 		this.verForm = verForm;
+	}
+	public boolean isAgraviado() {
+		return agraviado;
+	}
+	public void setAgraviado(boolean agraviado) {
+		this.agraviado = agraviado;
 	}
 }

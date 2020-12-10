@@ -20,6 +20,7 @@ public class CReclamo {
 	private boolean proceso;
 	private boolean solucionado;
 	private String tipoBienContratado;
+	private String montoreclamado;
 	
 	//contructores
 	
@@ -119,6 +120,12 @@ public class CReclamo {
 	public void setDocmultimedia(boolean docmultimedia) {
 		this.docmultimedia = docmultimedia;
 	}
+	public String getMontoreclamado() {
+		return montoreclamado;
+	}
+	public void setMontoreclamado(String montoreclamado) {
+		this.montoreclamado = montoreclamado;
+	}
 	//metodos
 	public CReclamo(){
 		idreclamo="";
@@ -135,13 +142,14 @@ public class CReclamo {
 		recibido=false;
 		proceso=false;
 		solucionado=false;
-		tipoBienContratado="producto";
+		tipoBienContratado="";
+		montoreclamado="0.0";
 	}
 	public CReclamo(String pidreclamo,int psolicitante,int ptipoproblema,
 			int psedeocurrencia,int pareaocurrencia,
 			Date pfecha,String pdetallereclamo,
 			String psolicitudreclamo,boolean pdocmultimedia,
-			boolean precibido,boolean pproceso,boolean psolucionado,Date pfechareclamo,String tipoBien)
+			boolean precibido,boolean pproceso,boolean psolucionado,Date pfechareclamo,String tipoBien,String pmonto)
 	{
 		idreclamo=pidreclamo;
 		solicitante=psolicitante;
@@ -158,6 +166,7 @@ public class CReclamo {
 		proceso=pproceso;
 		solucionado=psolucionado;
 		tipoBienContratado=tipoBien;
+		montoreclamado=pmonto;
 	}
 	public String getAllItems(){
 		return "CReclamo "+idreclamo+" "+
@@ -173,6 +182,8 @@ public class CReclamo {
 		listaImagenes.size()+" "+
 		recibido+" "+
 		proceso+" "+
-		solucionado;
+		solucionado+" "+
+		tipoBienContratado+" "+
+		montoreclamado;
 	}
 }

@@ -14,6 +14,21 @@ public class CSolicitante {
 	private String ciudad;
 	private String provincia;
 	private String distrito;
+	private String parentesco;
+	private String representado;
+	
+	public String getParentesco() {
+		return parentesco;
+	}
+	public void setParentesco(String parentesco) {
+		this.parentesco = parentesco;
+	}
+	public String getRepresentado() {
+		return representado;
+	}
+	public void setRepresentado(String representado) {
+		this.representado = representado;
+	}
 	public int getIdsolicitante() {
 		return idsolicitante;
 	}
@@ -92,29 +107,41 @@ public class CSolicitante {
 	public void setDistrito(String distrito) {
 		this.distrito = distrito;
 	}
-	public CSolicitante(){
-		idsolicitante=0;
-		tipodocumento=0;
-		nrodoc="";
-		nombres="";
-		apellidos="";
-		nrotelefono="";
-		correo="";
-		direccion="";
-		razonsocial="";
+	public CSolicitante(int idsolicitante, int tipodocumento, String nrodoc, String nombres, String apellidos,
+			String nrotelefono, String correo, String direccion, String razonsocial, String pais, String ciudad,
+			String provincia, String distrito, String parentesco, String representado) {
+		super();
+		this.idsolicitante = idsolicitante;
+		this.tipodocumento = tipodocumento;
+		this.nrodoc = nrodoc;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
+		this.nrotelefono = nrotelefono;
+		this.correo = correo;
+		this.direccion = direccion;
+		this.razonsocial = razonsocial;
+		this.pais = pais;
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.distrito = distrito;
+		this.parentesco = parentesco;
+		this.representado = representado;
 	}
-	public CSolicitante(int pidsolicitante,int ptipodocumento,String pnrodoc,String pnombres,
-			String papellidos,String pnrotelefono,String pcorreo,
-			String pdireccion,String prazonsocial)
-	{
-		idsolicitante=pidsolicitante;
-		tipodocumento=ptipodocumento;
-		nrodoc=pnrodoc;
-		nombres=pnombres;
-		apellidos=papellidos;
-		nrotelefono=pnrotelefono;
-		correo=pcorreo;
-		direccion=pdireccion;
-		razonsocial=prazonsocial;
+	public CSolicitante(){
+		this.idsolicitante=0;
+		this.tipodocumento=0;
+		this.nrodoc="";
+		this.nombres="";
+		this.apellidos="";
+		this.nrotelefono="";
+		this.correo="";
+		this.direccion="";
+		this.razonsocial="";
+		this.pais = "";
+		this.ciudad = "";
+		this.provincia = "";
+		this.distrito = "";
+		this.parentesco = "";
+		this.representado = "";
 	}
 }

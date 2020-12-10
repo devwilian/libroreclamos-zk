@@ -80,7 +80,8 @@ public class CreclamoDAO extends CConexion{
 				true,
 				false,
 				false,
-				reclamo.getTipoBienContratado()
+				reclamo.getTipoBienContratado(),
+				reclamo.getMontoreclamado()
 		};
 		return getEjecutorSQL().ejecutarProcedimiento("libro_insertar_reclamo", values);
 	}
@@ -119,7 +120,9 @@ public class CreclamoDAO extends CConexion{
 					(int)row.get("idtipoproblema"),(int)row.get("idsedeocurrencia"),
 					(int)row.get("idareaocurrencia"),(Date)row.get("fecha"),
 					(String)row.get("detallereclamo"),(String)row.get("solicitudreclamo"),(boolean)row.get("docmultimedia"),
-					(boolean)row.get("recibido"),(boolean)row.get("proceso"),(boolean)row.get("solucionado"),(Date)row.get("fechareclamo"),row.get("tipodebiencontratado").toString());
+					(boolean)row.get("recibido"),(boolean)row.get("proceso"),(boolean)row.get("solucionado"),
+					(Date)row.get("fechareclamo"),(String)row.get("tipodebiencontratado"),
+					(String)row.get("montoreclamado"));
 //		}
 	}
 	public boolean isOperationCorrect(List lista)

@@ -42,7 +42,9 @@ public class CsolicitanteDAO  extends CConexion{
 				solicitante.getPais(),
 				solicitante.getCiudad(),
 				solicitante.getProvincia(),
-				solicitante.getDistrito()
+				solicitante.getDistrito(),
+				solicitante.getParentesco(),
+				solicitante.getRepresentado()
 		};
 		return getEjecutorSQL().ejecutarProcedimiento("libro_insertarsolicitante", values);
 	}
@@ -53,7 +55,9 @@ public class CsolicitanteDAO  extends CConexion{
 			solicitante=new CSolicitante((int)row.get("idsolicitante"),(int)row.get("idtipodoc"),
 					(String)row.get("nrodoc"),(String)row.get("nombres"),
 					(String)row.get("apellidos"),(String)row.get("nrotelefono"),
-					(String)row.get("correo"),(String)row.get("direccion"),(String)row.get("razonsocial"));
+					(String)row.get("correo"),(String)row.get("direccion"),(String)row.get("razonsocial"),
+					(String)row.get("pais"),(String)row.get("ciudad"),(String)row.get("provincia"),(String)row.get("distrito"),
+					(String)row.get("parentesco"),(String)row.get("representado"));
 		}
 	}
 	public void asginarSolicitantes(List lista){
@@ -61,7 +65,9 @@ public class CsolicitanteDAO  extends CConexion{
 			solicitante=new CSolicitante((int)row.get("idsolicitante"),(int)row.get("idtipodoc"),
 					(String)row.get("nrodoc"),(String)row.get("nombres"),
 					(String)row.get("apellidos"),(String)row.get("nrotelefono"),
-					(String)row.get("correo"),(String)row.get("direccion"),(String)row.get("razonsocial"));
+					(String)row.get("correo"),(String)row.get("direccion"),(String)row.get("razonsocial"),
+					(String)row.get("pais"),(String)row.get("ciudad"),(String)row.get("provincia"),(String)row.get("distrito"),
+					(String)row.get("parentesco"),(String)row.get("representado"));
 		
 	}
 	public boolean isOperationCorrect(List lista)

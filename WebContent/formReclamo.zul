@@ -151,6 +151,32 @@
 									<div zclass="div_75" align="left"> <textbox placeholder="Direccion:Jr. Las Gaviotas, Chorrillos Lima" zclass="textboxuppercase" onChange="@command('changeDireccion',valor=self.value,comp=self)"/></div>
 								</div>
 							</div>
+							<div>
+								<div zclass="div_body_item" >
+									<div zclass="div_75" align="left"> <label value="La persona agraviada es la misma que presenta el reclamo?" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div style="width:100px;" align="left">
+										<combobox placeholder="SI o NO" readonly="true" onChange="@command('changeAgraviado',valor=self.selectedItem.value)" >
+										    <comboitem label="SI" value="si" />
+										    <comboitem label="NO" value="no" />
+										</combobox>
+									</div>
+								</div>
+							</div>
+							
+							<div visible="@bind(!vmForm.agraviado)">
+							
+								<div zclass="div_body_item_center" >
+									<div align="left"> <label value="Apellidos y Nombres del Agraviado" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div align="left"> <textbox placeholder="" zclass="textboxuppercase" onChange="@command('detallesPersonaAgraviada',valor=self.value,comp=self)"/></div>
+								</div>
+								<space></space>
+								<div zclass="div_body_item">
+									<div zclass="div_body_item div_mid" >
+										<div zclass="div_item_" align="left"> <label value="Parentesco" zclass="lbl_normal1 padding2 visiblephone"/></div>
+										<div zclass="div_item_" align="left"> <textbox placeholder="Parentesco" zclass="textboxuppercase" onChange="@command('detalleParentesco',valor=self.value,comp=self)"/></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<!--   IDENTIFICACION DEL BIEN CONTRATADO -->
@@ -158,14 +184,18 @@
 						<div zclass="div_identificacion_title_sub">
 							<label value="IDENTIFICACION DEL BIEN CONTRATADO" zclass="lbl_titulo4"></label>
 						</div>
-						<div sclass="div_body_item_center">
-							<div align="center">
-								<radiogroup onCheck="@command('tipodeProblema',valor=self.selectedItem.value,comp=self)">
-					                <radio label="PRODUCTO" value="producto" zclass="lbl_normal1 radio_label"/>
-					                <radio label="SERVICIO" value="servicio" zclass="lbl_normal1 radio_label"/>
-							    </radiogroup>
+						<div zclass="div_body_item">
+								<div zclass="div_body_item div_mid align_center" >
+									<radiogroup onCheck="@command('identificacionBienContratado',valor=self.selectedItem.value,comp=self)">
+						                <radio label="PRODUCTO" value="producto" zclass="lbl_normal1 radio_label"/>
+						                <radio label="SERVICIO" value="servicio" zclass="lbl_normal1 radio_label"/>
+								    </radiogroup>
+								</div>
+								<div zclass="div_body_item div_mid" >
+									<div zclass="div_item_" align="left"> <label value="Monto del bien contratado" zclass="lbl_normal1 padding2 visiblephone"/></div>
+									<div zclass="div_item_" align="left"> <textbox placeholder="00.00" zclass="textboxuppercase" onChange="@command('changeMontoContratado',valor=self.value,comp=self)"/></div>
+								</div>
 							</div>
-						</div>
 					</div>
 					<!-- IDENTIFICACION DE LA ATENCION BRINDADA -->
 					<div zclass="div_identificaion_usuario div_body">
@@ -317,7 +347,7 @@
 											<button zclass="btn_form_" id="btnsalir" onClick="@command('changeInterface',id=self.id)" image="img/icon/salir.png">SALIR</button>
 									</div>
 									<div zclass="div_btn_izq" align="center">
-								    	<button zclass="btn_form_" id="btnenviar" onClick="@command('changeInterface',id=self.id)" image="img/icon/continue.png" visible="@bind(vmForm.mostrarEnviar)">ENVIAR</button>
+								    	<button zclass="btn_form_" id="btnenviar" onClick="@command('changeInterface',id=self.id,comp=self)" image="img/icon/continue.png">ENVIAR</button>
 									</div>
 								</div>
 							</div>
